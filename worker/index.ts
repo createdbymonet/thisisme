@@ -1,10 +1,11 @@
 import { openApiDocument } from "./openapi.js";
 
 export default {
-  fetch(request) {
+  async fetch(request, env) {
     const url = new URL(request.url);
 
     if (request.method === "GET" && url.pathname === "/api/health") {
+			await env.DB.prepare("SELECT 1 FROM _infrastructure_health LIMIT 1").all();
       return Response.json({ status: "ok" });
     }
 
