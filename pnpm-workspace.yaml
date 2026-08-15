@@ -7,5 +7,8 @@ packages:
 # ERR_PNPM_IGNORED_BUILDS.
 allowBuilds:
   '@parcel/watcher': true
+  '@tree-sitter-grammars/tree-sitter-yaml': true
   esbuild: true
+  tree-sitter: true
+  tree-sitter-json: true
   workerd: true

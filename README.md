@@ -1,5 +1,26 @@
 # React + TypeScript + Vite
 
+## Cloudflare D1
+
+The Worker uses the `DB` binding for the `thisisme` D1 database. For local
+development, apply the migrations before starting Vite:
+
+```bash
+pnpm wrangler d1 migrations apply thisisme --local
+pnpm dev
+```
+
+Create the remote database while authenticated with Cloudflare, then replace
+the local `database_id` in `wrangler.jsonc` with the ID returned by Wrangler:
+
+```bash
+pnpm wrangler d1 create thisisme
+pnpm wrangler d1 migrations apply thisisme --remote
+```
+
+Migration status can be checked by replacing `apply` with `list` in either
+command. Migration SQL files are stored in `migrations/`.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
