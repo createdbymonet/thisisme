@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AccessPage } from '../pages/Access/AccessPage'
 import { HomePage } from '../pages/Home/HomePage'
@@ -10,11 +11,14 @@ import { DashboardPage } from '../pages/admin/Dashboard/DashboardPage'
 import { SettingsPage } from '../pages/admin/Settings/SettingsPage'
 import { TestimonialsPage } from '../pages/admin/Testimonials/TestimonialsPage'
 
+const DocsPage = lazy(() => import('../pages/Docs/DocsPage'))
+
 export function AppRouter() {
   return <BrowserRouter><Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/recommend" element={<RecommendPage />} />
     <Route path="/access" element={<AccessPage />} />
+    <Route path="/docs" element={<Suspense fallback={<main>Loading documentation…</main>}><DocsPage /></Suspense>} />
     <Route path="/private" element={<PrivateProfilePage />} />
     <Route path="/manage-portal" element={<AdminLoginPage />} />
     <Route path="/admin" element={<DashboardPage />} />
