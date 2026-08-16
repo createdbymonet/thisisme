@@ -69,6 +69,31 @@ Worker secret; never add the key to `appsettings.json` or `wrangler.jsonc`:
 pnpm wrangler secret put PRIVATE_DATA_ENCRYPTION_KEY
 ```
 
+### Administrator authentication
+
+Admin authentication uses a dedicated `ADMIN_AUTH_SECRET`; company access codes
+cannot authenticate administrators. For local development, place both required
+secrets in the ignored `.dev.vars` file. Do not commit that file:
+
+```text
+PRIVATE_DATA_ENCRYPTION_KEY="<base64-encoded 32-byte development key>"
+ADMIN_AUTH_SECRET="<long, random development-only credential>"
+```
+
+Configure the production credential interactively as a Worker Secret:
+
+```bash
+pnpm wrangler secret put ADMIN_AUTH_SECRET
+```
+
+Successful login creates a 45-minute opaque session in an HttpOnly, Secure,
+SameSite=Strict cookie. D1 stores only the SHA-256 session-token hash. Access
+codes created or reissued in the admin UI are displayed once and cannot be
+recovered; copy them before dismissing the notice.
+
+The `testimonial:moderate` command remains a credential-dependent emergency
+and development workflow. Browser moderation uses authenticated admin APIs.
+
 ### Protected-profile developer workflow
 
 Set `PRIVATE_DATA_ENCRYPTION_KEY` in the current shell, then pass plaintext only

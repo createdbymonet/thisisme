@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const adminNavigation = [
   ['Overview', '/admin'],
@@ -17,8 +17,13 @@ type AdminShellProps = PropsWithChildren<{
 }>
 
 export function AdminShell({ route, title, responsiveTitle = title, intro, children }: AdminShellProps) {
+  const navigate = useNavigate()
+  async function logout() {
+    await fetch('/api/admin/logout', { method: 'POST' })
+    navigate('/manage-portal', { replace: true })
+  }
   return <div className="admin-dashboard">
-    <header className="admin-topbar"><strong>This is me Admin</strong><span>{route}</span></header>
+    <header className="admin-topbar"><strong>This is me Admin</strong><span>{route}</span><button type="button" onClick={logout}>Log out</button></header>
     <div className="admin-shell">
       <nav className="admin-sidebar" aria-label="Admin navigation">
         {adminNavigation.map(([label, path]) => <NavLink end={path === '/admin'} to={path} key={path}>{label}</NavLink>)}

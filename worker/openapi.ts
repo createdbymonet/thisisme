@@ -33,6 +33,35 @@ export const openApiDocument = {
         },
       },
     },
+    "/api/admin/login": {
+      post: {
+        summary: "Authenticate an administrator",
+        requestBody: { required: true, content: { "application/json": { schema: { type: "object", properties: { credential: { type: "string", minLength: 16, maxLength: 512 } }, required: ["credential"], additionalProperties: false } } } },
+        responses: { "200": { description: "Authenticated; sets the admin session cookie." }, "400": { $ref: "#/components/responses/InvalidRequest" }, "401": { $ref: "#/components/responses/AdminUnauthorized" } },
+      },
+    },
+    "/api/admin/session": {
+      get: { summary: "Check the admin session", security: [{ adminSession: [] }], responses: { "200": { description: "The admin session is valid." }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/logout": {
+      post: { summary: "End the admin session", security: [{ adminSession: [] }], responses: { "200": { description: "The server session and cookie were cleared." }, "400": { $ref: "#/components/responses/InvalidRequest" } } },
+    },
+    "/api/admin/access-codes": {
+      get: { summary: "List access codes", security: [{ adminSession: [] }], responses: { "200": { description: "Decrypted company names and safe access-code metadata." }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+      post: { summary: "Issue a company access code", security: [{ adminSession: [] }], requestBody: { required: true, content: { "application/json": { schema: { type: "object", properties: { companyName: { type: "string", minLength: 2, maxLength: 160 }, expiresAt: { type: "string", format: "date-time" } }, required: ["companyName"], additionalProperties: false } } } }, responses: { "201": { description: "The plaintext access code is returned once." }, "400": { $ref: "#/components/responses/InvalidRequest" }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/access-codes/{id}/reissue": {
+      post: { summary: "Reissue an access code", security: [{ adminSession: [] }], parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } }], responses: { "200": { description: "A new plaintext code is returned once; the prior code is invalid." }, "400": { $ref: "#/components/responses/InvalidRequest" }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/access-codes/{id}": {
+      patch: { summary: "Update access-code activation and expiration", security: [{ adminSession: [] }], parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } }], responses: { "200": { description: "Access-code settings updated." }, "400": { $ref: "#/components/responses/InvalidRequest" }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/testimonials": {
+      get: { summary: "List testimonials for moderation", security: [{ adminSession: [] }], responses: { "200": { description: "Deliberate decrypted moderation models." }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/testimonials/{id}/{decision}": {
+      post: { summary: "Approve or reject a pending testimonial", security: [{ adminSession: [] }], parameters: [{ name: "id", in: "path", required: true, schema: { type: "string", format: "uuid" } }, { name: "decision", in: "path", required: true, schema: { type: "string", enum: ["approve", "reject"] } }], responses: { "200": { description: "The testimonial was reviewed." }, "400": { $ref: "#/components/responses/InvalidRequest" }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
     "/api/access/validate": {
       post: {
         summary: "Validate a protected-profile access code",
@@ -167,6 +196,12 @@ export const openApiDocument = {
   },
   components: {
     securitySchemes: {
+      adminSession: {
+        type: "apiKey",
+        in: "cookie",
+        name: "__Host-thisisme_admin",
+        description: "Short-lived opaque administrator session.",
+      },
       protectedProfileSession: {
         type: "apiKey",
         in: "cookie",
@@ -217,6 +252,14 @@ export const openApiDocument = {
       },
     },
     responses: {
+      AdminUnauthorized: {
+        description: "A valid administrator session is required.",
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Error" } } },
+      },
+      InvalidRequest: {
+        description: "The request is invalid or failed origin validation.",
+        content: { "application/json": { schema: { $ref: "#/components/schemas/Error" } } },
+      },
       InvalidTestimonial: {
         description: "The testimonial submission is invalid.",
         content: {

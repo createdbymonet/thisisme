@@ -5,6 +5,14 @@ const SALT_LENGTH = 16;
 const HASH_LENGTH = 32;
 const FORMAT_PREFIX = "pbkdf2-sha256";
 
+function bytesToBase64Url(bytes: Uint8Array) {
+  return bytesToBase64(bytes).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+export function createAccessCode() {
+  return bytesToBase64Url(crypto.getRandomValues(new Uint8Array(24)));
+}
+
 function bytesToBase64(bytes: Uint8Array) {
   let binary = "";
 

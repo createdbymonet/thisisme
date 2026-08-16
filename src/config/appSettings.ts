@@ -15,6 +15,9 @@ export type AppSettings = {
   protectedProfile: {
     sessionLifetimeMinutes: number
   }
+  admin: {
+    sessionLifetimeMinutes: number
+  }
 }
 
 function isSupportedLanguage(value: string): value is SupportedLanguage {
@@ -35,5 +38,8 @@ export const appSettings: AppSettings = {
   },
   protectedProfile: {
     sessionLifetimeMinutes: appSettingsJson.protectedProfile.sessionLifetimeMinutes,
+  },
+  admin: {
+    sessionLifetimeMinutes: appSettingsJson.admin.sessionLifetimeMinutes,
   },
 }
