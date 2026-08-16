@@ -1,13 +1,14 @@
 packages:
   - '.'
 
-# Pre-approve build scripts for the packages C3 itself installs that need
-# them: `workerd` downloads the platform binary and `esbuild` downloads/
-# builds native bindings. Without these, pnpm 11+ aborts the install with
-# ERR_PNPM_IGNORED_BUILDS.
+# Dependencies that genuinely require install/build scripts are explicitly
+# allowed with `true`. Dependencies whose install scripts are unnecessary for
+# this project are explicitly blocked with `false`.
 allowBuilds:
   '@parcel/watcher': true
+  '@scarf/scarf': false
   '@tree-sitter-grammars/tree-sitter-yaml': true
+  core-js-pure: false
   esbuild: true
   tree-sitter: true
   tree-sitter-json: true
