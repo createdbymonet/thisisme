@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
+
+      - name: Validate committed whitespace
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [[ "$EVENT_NAME" == "pull_request" ]]; then
+            git diff --check "$PR_BASE_SHA" "$PR_HEAD_SHA"
+          elif git cat-file -e "$PUSH_BEFORE_SHA^{commit}" 2>/dev/null; then
+            git diff --check "$PUSH_BEFORE_SHA" "$GITHUB_SHA"
+          else
+            EMPTY_TREE="$(git hash-object -t tree /dev/null)"
+            git diff --check "$EMPTY_TREE" "$GITHUB_SHA"
+          fi
+
+      - name: Validate repository safety
+        run: pnpm check:repository
+
+      - name: Apply and validate clean local migrations
+        run: pnpm check:migrations
