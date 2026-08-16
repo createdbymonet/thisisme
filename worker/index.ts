@@ -2,6 +2,7 @@ import { openApiDocument } from "./openapi.js";
 import type { ApplicationEnv } from "./environment.js";
 import { handleAccessValidation, handlePrivateProfile } from "./handlers/protectedAccess.js";
 import { handleApprovedTestimonials, handleTestimonialSubmission } from "./handlers/testimonials.js";
+import { handleAdminApi, handleAdminLogin, handleAdminLogout, handleAdminSession } from "./handlers/admin.js";
 
 export default {
   async fetch(request, env) {
@@ -31,6 +32,11 @@ export default {
     if (request.method === "POST" && url.pathname === "/api/testimonials") {
       return handleTestimonialSubmission(request, env);
     }
+
+    if (request.method === "POST" && url.pathname === "/api/admin/login") return handleAdminLogin(request, env);
+    if (request.method === "GET" && url.pathname === "/api/admin/session") return handleAdminSession(request, env);
+    if (request.method === "POST" && url.pathname === "/api/admin/logout") return handleAdminLogout(request, env);
+    if (url.pathname.startsWith("/api/admin/")) return handleAdminApi(request, env, url.pathname);
 		return new Response(null, { status: 404 });
   },
 } satisfies ExportedHandler<ApplicationEnv>;

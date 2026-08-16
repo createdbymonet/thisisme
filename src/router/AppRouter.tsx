@@ -10,6 +10,7 @@ import { AnalyticsPage } from '../pages/admin/Analytics/AnalyticsPage'
 import { DashboardPage } from '../pages/admin/Dashboard/DashboardPage'
 import { SettingsPage } from '../pages/admin/Settings/SettingsPage'
 import { TestimonialsPage } from '../pages/admin/Testimonials/TestimonialsPage'
+import { AdminRoute } from '../components/admin/AdminRoute'
 
 const DocsPage = lazy(() => import('../pages/Docs/DocsPage'))
 
@@ -21,10 +22,10 @@ export function AppRouter() {
     <Route path="/docs" element={<Suspense fallback={<main>Loading documentation…</main>}><DocsPage /></Suspense>} />
     <Route path="/private" element={<PrivateProfilePage />} />
     <Route path="/manage-portal" element={<AdminLoginPage />} />
-    <Route path="/admin" element={<DashboardPage />} />
-    <Route path="/admin/access-codes" element={<AccessCodesPage />} />
-    <Route path="/admin/analytics" element={<AnalyticsPage />} />
-    <Route path="/admin/testimonials" element={<TestimonialsPage />} />
-    <Route path="/admin/settings" element={<SettingsPage />} />
+    <Route path="/admin" element={<AdminRoute><DashboardPage /></AdminRoute>} />
+    <Route path="/admin/access-codes" element={<AdminRoute><AccessCodesPage /></AdminRoute>} />
+    <Route path="/admin/analytics" element={<AdminRoute><AnalyticsPage /></AdminRoute>} />
+    <Route path="/admin/testimonials" element={<AdminRoute><TestimonialsPage /></AdminRoute>} />
+    <Route path="/admin/settings" element={<AdminRoute><SettingsPage /></AdminRoute>} />
   </Routes></BrowserRouter>
 }

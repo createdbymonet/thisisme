@@ -134,11 +134,15 @@ a { color: inherit; }
 .admin-login-card { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; width: min(624px, 100%); margin-top: 28px; padding: 32px; background: var(--color-paper-surface); border: 1px solid var(--color-border); border-radius: 8px; }
 .admin-login-card input { width: 100%; }
 .admin-login-card__button { color: var(--color-background); cursor: pointer; }
+.admin-login-card__button:disabled { cursor: wait; opacity: .65; }
+.admin-form-message { margin: 0; color: var(--color-error); font-weight: 700; }
 
 .admin-dashboard { min-height: 900px; background: var(--color-background); border: 1px solid var(--color-border); }
 .admin-topbar { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 32px; color: var(--color-background); background: var(--color-primary-strong); }
 .admin-topbar strong { font-size: 20px; }
 .admin-topbar span { font-size: 14px; font-weight: 700; }
+.admin-topbar button { padding: 7px 12px; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 6px; cursor: pointer; }
+.admin-route-state { min-height: 100vh; padding: 32px; background: var(--color-background); }
 .admin-shell { display: grid; grid-template-columns: 250px minmax(0, 1fr); min-height: 828px; }
 .admin-sidebar { display: flex; flex-direction: column; gap: 20px; padding: 32px 24px; color: var(--color-background); background: var(--color-primary-strong); }
 .admin-sidebar a { font-size: 15px; text-decoration: none; }
@@ -168,6 +172,10 @@ a { color: inherit; }
 .access-codes-create:focus-visible { outline: 3px solid var(--color-accent-soft); outline-offset: 2px; }
 .access-codes-list { max-width: 1040px; }
 .access-codes-list :is(th, td) { width: 20%; }
+.access-code-form, .one-time-code { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; max-width: 1040px; margin-bottom: 20px; }
+.access-code-form input { min-height: 40px; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 6px; font: inherit; }
+.one-time-code { padding: 16px; background: var(--color-warm-surface); border: 1px solid var(--color-border); border-radius: 6px; }
+.one-time-code code { padding: 6px 8px; background: white; overflow-wrap: anywhere; }
 .analytics-filters { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
 .analytics-filters button { min-height: 38px; padding: 9px 14px; color: var(--color-text-primary); background: var(--color-paper-surface); border: 1px solid var(--color-border); border-radius: 6px; cursor: pointer; font: inherit; font-size: 13px; }
 .analytics-filters button:focus-visible { outline: 3px solid var(--color-accent-soft); outline-offset: 2px; }
