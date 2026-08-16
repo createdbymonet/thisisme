@@ -1,6 +1,6 @@
 const HASH_ALGORITHM = "PBKDF2";
 const HASH_DIGEST = "SHA-256";
-const HASH_ITERATIONS = 210_000;
+const HASH_ITERATIONS = 100_000;
 const SALT_LENGTH = 16;
 const HASH_LENGTH = 32;
 const FORMAT_PREFIX = "pbkdf2-sha256";
