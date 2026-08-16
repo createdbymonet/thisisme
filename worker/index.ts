@@ -3,6 +3,7 @@ import type { ApplicationEnv } from "./environment.js";
 import { handleAccessValidation, handlePrivateProfile } from "./handlers/protectedAccess.js";
 import { handleApprovedTestimonials, handleTestimonialSubmission } from "./handlers/testimonials.js";
 import { handleAdminApi, handleAdminLogin, handleAdminLogout, handleAdminSession } from "./handlers/admin.js";
+import { handleAnalyticsEvent } from "./handlers/analytics.js";
 
 export default {
   async fetch(request, env) {
@@ -32,6 +33,8 @@ export default {
     if (request.method === "POST" && url.pathname === "/api/testimonials") {
       return handleTestimonialSubmission(request, env);
     }
+
+    if (request.method === "POST" && url.pathname === "/api/analytics/events") return handleAnalyticsEvent(request, env);
 
     if (request.method === "POST" && url.pathname === "/api/admin/login") return handleAdminLogin(request, env);
     if (request.method === "GET" && url.pathname === "/api/admin/session") return handleAdminSession(request, env);

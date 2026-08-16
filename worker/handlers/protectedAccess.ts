@@ -3,6 +3,7 @@ import { getPrivateProfile } from "../data/privateProfileRepository.js";
 import { authorizeSession, validateAccessCode } from "../data/protectedAccessRepository.js";
 import type { ApplicationEnv } from "../environment.js";
 import { createSessionCookie, readSessionToken } from "../security/session.js";
+import { recordAnalyticsEvent } from "../data/analyticsRepository.js";
 
 const UNAUTHORIZED_RESPONSE = { error: "Invalid or expired access code." };
 const SESSION_REQUIRED_RESPONSE = { error: "Authorization required." };
@@ -38,7 +39,12 @@ export async function handleAccessValidation(request: Request, env: ApplicationE
       && configuredLifetime <= 1_440
       ? configuredLifetime
       : 30;
-    const sessionToken = await validateAccessCode(env.DB, accessCode, sessionLifetimeMinutes);
+    const sessionToken = await validateAccessCode(
+      env.DB,
+      accessCode,
+      sessionLifetimeMinutes,
+      await getSetting("analytics.enabled", env) === true,
+    );
 
     if (!sessionToken) {
       return jsonError(UNAUTHORIZED_RESPONSE, 401);
@@ -65,6 +71,13 @@ export async function handlePrivateProfile(request: Request, env: ApplicationEnv
     }
 
     const profile = await getPrivateProfile(env.DB, env.PRIVATE_DATA_ENCRYPTION_KEY);
+    if (profile && await getSetting("analytics.enabled", env) === true) {
+      try {
+        await recordAnalyticsEvent(env.DB, sessionToken, { eventType: "private_profile_view", pageKey: "private", sectionKey: null, durationMs: null });
+      } catch {
+        // Analytics must not prevent an authorized profile response.
+      }
+    }
     return Response.json({ profile }, { headers: NO_STORE_HEADERS });
   } catch {
     logFailure(new URL(request.url).pathname);

@@ -2,6 +2,7 @@ import appSettings from "../../appsettings.json" with { type: "json" };
 import { issueAccessCode, listAccessCodes, listAdminTestimonials, moderateTestimonial, reissueAccessCode, updateAccessCode } from "../data/adminRepository.js";
 import type { ApplicationEnv } from "../environment.js";
 import { adminSessionCookie, clearAdminSessionCookie, createAdminSession, hasValidOrigin, invalidateAdminSession, requireAdminSession, verifyAdminCredential } from "../security/adminSession.js";
+import { getAnalyticsSummary, getCompanyAnalytics } from "../data/analyticsRepository.js";
 
 const HEADERS = { "Cache-Control": "no-store" };
 const unauthorized = () => Response.json({ error: "Authorization required." }, { status: 401, headers: HEADERS });
@@ -79,6 +80,13 @@ export async function handleAdminApi(request: Request, env: ApplicationEnv, path
       return await updateAccessCode(env.DB, update[1], record.isActive, record.expiresAt) ? Response.json({ updated: true }, { headers: HEADERS }) : invalid();
     }
     if (request.method === "GET" && path === "/api/admin/testimonials") return Response.json({ testimonials: await listAdminTestimonials(env.DB, env.PRIVATE_DATA_ENCRYPTION_KEY) }, { headers: HEADERS });
+    if (request.method === "GET" && path === "/api/admin/analytics/summary") return Response.json(await getAnalyticsSummary(env.DB), { headers: HEADERS });
+    if (request.method === "GET" && path === "/api/admin/analytics/companies") return Response.json({ companies: await getCompanyAnalytics(env.DB, env.PRIVATE_DATA_ENCRYPTION_KEY) }, { headers: HEADERS });
+    const companyAnalytics = path.match(/^\/api\/admin\/analytics\/companies\/([0-9a-f-]+)$/u);
+    if (request.method === "GET" && companyAnalytics) {
+      const companies = await getCompanyAnalytics(env.DB, env.PRIVATE_DATA_ENCRYPTION_KEY, companyAnalytics[1]);
+      return companies[0] ? Response.json({ company: companies[0] }, { headers: HEADERS }) : new Response(null, { status: 404, headers: HEADERS });
+    }
     const review = path.match(new RegExp(`^/api/admin/testimonials/${ID}/(approve|reject)$`, "u"));
     if (request.method === "POST" && review) {
       const updated = await moderateTestimonial(env.DB, review[1], review[2] === "approve" ? "approved" : "rejected");

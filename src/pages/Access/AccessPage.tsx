@@ -1,8 +1,10 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandalonePage } from '../../components/layout/StandalonePage'
+import { usePageAnalytics } from '../../analytics'
 
 export function AccessPage() {
+  usePageAnalytics('access')
   const navigate = useNavigate()
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState<string | null>(null)

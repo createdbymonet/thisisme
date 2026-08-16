@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { StandalonePage } from '../../components/layout/StandalonePage'
+import { usePageAnalytics, useSectionAnalytics } from '../../analytics'
 
 type PrivateProfile = {
   legalName: string
@@ -17,6 +18,8 @@ type ProfileState =
   | { status: 'failed' }
 
 export function PrivateProfilePage() {
+  usePageAnalytics('private')
+  useSectionAnalytics('private')
   const [state, setState] = useState<ProfileState>({ status: 'loading' })
 
   useEffect(() => {
@@ -54,7 +57,7 @@ export function PrivateProfilePage() {
 
   return (
     <StandalonePage className="private-page" route="/private" title="Private Profile" intro="Protected career information available only after successful company access-code authentication.">
-      <section className="protected-preview" aria-labelledby="protected-information-title">
+      <section className="protected-preview" aria-labelledby="protected-information-title" data-analytics-section="protected-profile">
         <h2 id="protected-information-title">Protected information</h2>
         {state.status === 'loading' && <p>Loading protected profile…</p>}
         {state.status === 'unauthorized' && <p>This information is locked. <Link to="/access">Enter an access code</Link>.</p>}

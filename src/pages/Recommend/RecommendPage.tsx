@@ -2,10 +2,12 @@ import { useState, type FormEvent } from 'react'
 import { appSettings, type SupportedLanguage } from '../../config/appSettings'
 import { StandalonePage } from '../../components/layout/StandalonePage'
 import { translate, type TranslationKey } from '../../i18n'
+import { usePageAnalytics } from '../../analytics'
 
 type DisplayPreference = 'full_name' | 'partial_name' | 'anonymous'
 
 export function RecommendPage() {
+  usePageAnalytics('recommend')
   const [language, setLanguage] = useState<SupportedLanguage>(appSettings.application.defaultLanguage)
   const [authorName, setAuthorName] = useState('')
   const [relationship, setRelationship] = useState('')

@@ -6,7 +6,9 @@ export type SettingKey =
   | "application.defaultLanguage"
   | "security.encryptionVersion"
   | "accessCode.defaultExpirationDays"
-  | "protectedProfile.sessionLifetimeMinutes";
+  | "protectedProfile.sessionLifetimeMinutes"
+  | "analytics.enabled"
+  | "analytics.retentionDays";
 export type SettingValue = string | number | boolean;
 
 type SettingRow = {
@@ -25,6 +27,10 @@ function getDefaultSetting(key: SettingKey): SettingValue {
       return defaultSettings.accessCode.defaultExpirationDays;
     case "protectedProfile.sessionLifetimeMinutes":
       return defaultSettings.protectedProfile.sessionLifetimeMinutes;
+    case "analytics.enabled":
+      return defaultSettings.analytics.enabled;
+    case "analytics.retentionDays":
+      return defaultSettings.analytics.retentionDays;
   }
 }
 

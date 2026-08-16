@@ -18,6 +18,10 @@ export type AppSettings = {
   admin: {
     sessionLifetimeMinutes: number
   }
+  analytics: {
+    enabled: boolean
+    retentionDays: number
+  }
 }
 
 function isSupportedLanguage(value: string): value is SupportedLanguage {
@@ -41,5 +45,9 @@ export const appSettings: AppSettings = {
   },
   admin: {
     sessionLifetimeMinutes: appSettingsJson.admin.sessionLifetimeMinutes,
+  },
+  analytics: {
+    enabled: appSettingsJson.analytics.enabled,
+    retentionDays: appSettingsJson.analytics.retentionDays,
   },
 }
