@@ -9,6 +9,12 @@ export type AppSettings = {
   security: {
     encryptionVersion: number
   }
+  accessCode: {
+    defaultExpirationDays: number
+  }
+  protectedProfile: {
+    sessionLifetimeMinutes: number
+  }
 }
 
 function isSupportedLanguage(value: string): value is SupportedLanguage {
@@ -23,5 +29,11 @@ export const appSettings: AppSettings = {
   },
   security: {
     encryptionVersion: appSettingsJson.security.encryptionVersion,
+  },
+  accessCode: {
+    defaultExpirationDays: appSettingsJson.accessCode.defaultExpirationDays,
+  },
+  protectedProfile: {
+    sessionLifetimeMinutes: appSettingsJson.protectedProfile.sessionLifetimeMinutes,
   },
 }

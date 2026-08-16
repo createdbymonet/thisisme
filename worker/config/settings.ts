@@ -2,7 +2,11 @@ import defaultSettings from "../../appsettings.json" with { type: "json" };
 import type { ApplicationEnv } from "../environment.js";
 import { decryptText } from "../security/crypto.js";
 
-export type SettingKey = "application.defaultLanguage" | "security.encryptionVersion";
+export type SettingKey =
+  | "application.defaultLanguage"
+  | "security.encryptionVersion"
+  | "accessCode.defaultExpirationDays"
+  | "protectedProfile.sessionLifetimeMinutes";
 export type SettingValue = string | number | boolean;
 
 type SettingRow = {
@@ -17,6 +21,10 @@ function getDefaultSetting(key: SettingKey): SettingValue {
       return defaultSettings.application.defaultLanguage;
     case "security.encryptionVersion":
       return defaultSettings.security.encryptionVersion;
+    case "accessCode.defaultExpirationDays":
+      return defaultSettings.accessCode.defaultExpirationDays;
+    case "protectedProfile.sessionLifetimeMinutes":
+      return defaultSettings.protectedProfile.sessionLifetimeMinutes;
   }
 }
 
