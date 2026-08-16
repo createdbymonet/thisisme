@@ -1,0 +1,19 @@
+[
+  { "id": "typescript", "name": "TypeScript", "category": "language", "experienceType": "professional" },
+  { "id": "javascript", "name": "JavaScript", "category": "language", "experienceType": "professional" },
+  { "id": "react", "name": "React", "category": "frontend", "experienceType": "professional" },
+  { "id": "vue-js", "name": "Vue.js", "category": "frontend", "experienceType": "professional" },
+  { "id": "c-sharp", "name": "C#", "category": "language", "experienceType": "professional" },
+  { "id": "rest-api", "name": "REST API", "category": "backend", "experienceType": "professional" },
+  { "id": "testing", "name": "Testing", "category": "engineering", "experienceType": "professional" },
+  { "id": "requirements-analysis", "name": "Requirements Analysis", "category": "engineering", "experienceType": "professional" },
+  { "id": "git", "name": "Git", "category": "tooling", "experienceType": "professional" },
+  { "id": "github", "name": "GitHub", "category": "tooling", "experienceType": "professional" },
+  { "id": "debugging", "name": "Debugging", "category": "engineering", "experienceType": "professional" },
+  { "id": "cloudflare-workers", "name": "Cloudflare Workers", "category": "backend", "experienceType": "learning" },
+  { "id": "cloudflare-d1", "name": "Cloudflare D1", "category": "database", "experienceType": "learning" },
+  { "id": "openapi", "name": "OpenAPI", "category": "api", "experienceType": "learning" },
+  { "id": "swagger-ui", "name": "Swagger UI", "category": "api", "experienceType": "learning" },
+  { "id": "vite", "name": "Vite", "category": "tooling", "experienceType": "learning" },
+  { "id": "serverless-architecture", "name": "Serverless Architecture", "category": "architecture", "experienceType": "learning" }
+]

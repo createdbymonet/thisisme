@@ -32,6 +32,8 @@ a { color: inherit; }
 .site-header__nav a { text-decoration: none; }
 .site-header__nav a:hover { color: var(--color-primary); }
 .site-header__actions, .language { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.language button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.language button[aria-pressed="true"] { font-weight: 700; }
 .site-header__actions { gap: 28px; font-size: 14px; }
 
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 11px 18px; color: var(--color-background); background: var(--color-primary-strong); border: 1px solid var(--color-primary-strong); border-radius: 6px; font-size: 14px; font-weight: 700; line-height: 1.2; text-decoration: none; }

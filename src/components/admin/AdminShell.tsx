@@ -18,7 +18,7 @@ type AdminShellProps = PropsWithChildren<{
 
 export function AdminShell({ route, title, responsiveTitle = title, intro, children }: AdminShellProps) {
   return <div className="admin-dashboard">
-    <header className="admin-topbar"><strong>thisisme admin</strong><span>{route}</span></header>
+    <header className="admin-topbar"><strong>This is me Admin</strong><span>{route}</span></header>
     <div className="admin-shell">
       <nav className="admin-sidebar" aria-label="Admin navigation">
         {adminNavigation.map(([label, path]) => <NavLink end={path === '/admin'} to={path} key={path}>{label}</NavLink>)}
