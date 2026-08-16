@@ -25,5 +25,21 @@
   "projects.title": "プロジェクト",
   "about.title": "自己紹介",
   "testimonials.title": "推薦コメント",
-  "contact.title": "お問い合わせ"
+  "contact.title": "お問い合わせ",
+  "recommend.title": "推薦コメントの投稿",
+  "recommend.intro": "一緒に働いた、または活動した経験について推薦コメントをお寄せください。",
+  "recommend.language": "言語",
+  "recommend.authorName": "お名前",
+  "recommend.relationship": "ご関係",
+  "recommend.comment": "推薦コメント",
+  "recommend.displayPreference": "公開時のお名前の表示方法",
+  "recommend.displayPreference.full_name": "フルネーム",
+  "recommend.displayPreference.partial_name": "一部のみ",
+  "recommend.displayPreference.anonymous": "匿名",
+  "recommend.expectation": "投稿内容は公開前に確認されます。お名前は選択した表示方法に従って公開される場合があります。",
+  "recommend.submit": "推薦コメントを投稿",
+  "recommend.submitting": "送信中…",
+  "recommend.success": "ありがとうございます。推薦コメントを確認待ちとして受け付けました。",
+  "recommend.error.validation": "すべての項目に有効な内容を入力してください。",
+  "recommend.error.server": "推薦コメントを送信できませんでした。もう一度お試しください。"
 }

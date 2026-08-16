@@ -108,6 +108,62 @@ export const openApiDocument = {
         },
       },
     },
+    "/api/testimonials": {
+      get: {
+        summary: "List approved testimonials",
+        description: "Returns only approved testimonials with server-applied name privacy rules.",
+        responses: {
+          "200": {
+            description: "Public approved testimonials.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    testimonials: {
+                      type: "array",
+                      items: { $ref: "#/components/schemas/PublicTestimonial" },
+                    },
+                  },
+                  required: ["testimonials"],
+                  additionalProperties: false,
+                },
+              },
+            },
+          },
+          "500": { $ref: "#/components/responses/InternalServerError" },
+        },
+      },
+      post: {
+        summary: "Submit a testimonial",
+        description: "Valid submissions are encrypted and stored for moderation with pending status.",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/TestimonialSubmission" },
+            },
+          },
+        },
+        responses: {
+          "201": {
+            description: "The testimonial was submitted for review.",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: { submitted: { type: "boolean", const: true } },
+                  required: ["submitted"],
+                  additionalProperties: false,
+                },
+              },
+            },
+          },
+          "400": { $ref: "#/components/responses/InvalidTestimonial" },
+          "500": { $ref: "#/components/responses/InternalServerError" },
+        },
+      },
+    },
   },
   components: {
     securitySchemes: {
@@ -119,6 +175,28 @@ export const openApiDocument = {
       },
     },
     schemas: {
+      TestimonialSubmission: {
+        type: "object",
+        properties: {
+          authorName: { type: "string", minLength: 2, maxLength: 100 },
+          relationship: { type: "string", minLength: 2, maxLength: 120 },
+          comment: { type: "string", minLength: 10, maxLength: 2000 },
+          displayPreference: { type: "string", enum: ["full_name", "partial_name", "anonymous"] },
+        },
+        required: ["authorName", "relationship", "comment", "displayPreference"],
+        additionalProperties: false,
+      },
+      PublicTestimonial: {
+        type: "object",
+        properties: {
+          authorName: { oneOf: [{ type: "string" }, { type: "null" }] },
+          isAnonymous: { type: "boolean" },
+          relationship: { type: "string" },
+          comment: { type: "string" },
+        },
+        required: ["authorName", "isAnonymous", "relationship", "comment"],
+        additionalProperties: false,
+      },
       PrivateProfile: {
         type: "object",
         properties: {
@@ -139,6 +217,12 @@ export const openApiDocument = {
       },
     },
     responses: {
+      InvalidTestimonial: {
+        description: "The testimonial submission is invalid.",
+        content: {
+          "application/json": { schema: { $ref: "#/components/schemas/Error" } },
+        },
+      },
       UnauthorizedAccessCode: {
         description: "The access code is invalid or expired.",
         content: {
