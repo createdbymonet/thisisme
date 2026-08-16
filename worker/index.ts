@@ -1,4 +1,5 @@
 import { openApiDocument } from "./openapi.js";
+import type { ApplicationEnv } from "./environment.js";
 
 export default {
   async fetch(request, env) {
@@ -14,4 +15,4 @@ export default {
     }
 		return new Response(null, { status: 404 });
   },
-} satisfies ExportedHandler<Env>;
+} satisfies ExportedHandler<ApplicationEnv>;

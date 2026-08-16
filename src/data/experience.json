@@ -1,0 +1,6 @@
+[
+  { "id": "veterinary-nurse", "role": "Veterinary Nurse", "summaryKey": "experience.veterinaryNurse.summary" },
+  { "id": "software-developer", "role": "Software Developer", "summaryKey": "experience.softwareDeveloper.summary" },
+  { "id": "volunteer-developer", "role": "Volunteer Developer", "summaryKey": "experience.volunteerDeveloper.summary" },
+  { "id": "software-engineer", "role": "Software Engineer", "summaryKey": "experience.softwareEngineer.summary" }
+]
