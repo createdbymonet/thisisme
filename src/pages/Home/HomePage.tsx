@@ -5,6 +5,7 @@ import experienceJson from '../../data/experience.json' with { type: 'json' }
 import skillsJson from '../../data/skills.json' with { type: 'json' }
 import type { Experience, Skill } from '../../data/types'
 import { translate, type TranslationKey } from '../../i18n'
+import { usePageAnalytics, useSectionAnalytics } from '../../analytics'
 
 const navigation: Array<[TranslationKey, string]> = [['nav.skills', 'skills'], ['nav.experience', 'experience'], ['nav.projects', 'projects'], ['nav.about', 'about'], ['nav.testimonials', 'testimonials'], ['nav.contact', 'contact']]
 const skills = skillsJson as Skill[]
@@ -15,6 +16,8 @@ function SkillList({ skills }: { skills: string[] }) {
 }
 
 export function HomePage() {
+  usePageAnalytics('home')
+  useSectionAnalytics('home')
   const [language, setLanguage] = useState<SupportedLanguage>(appSettings.application.defaultLanguage)
   const t = (key: TranslationKey) => translate(language, key)
   const professionalSkills = skills.filter((skill) => skill.experienceType === 'professional').map((skill) => skill.name)
@@ -31,7 +34,7 @@ export function HomePage() {
     </header>
 
     <main id="top">
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-labelledby="hero-title" data-analytics-section="hero">
         <div className="hero__copy">
           <p className="eyebrow">{t('hero.eyebrow')}</p>
           <h1 id="hero-title">{t('hero.title')}</h1>
@@ -42,7 +45,7 @@ export function HomePage() {
         <div className="visual-placeholder hero__visual">Photo / visual placeholder</div>
       </section>
 
-      <section className="home-section home-section--blue" id="skills" aria-labelledby="skills-title">
+      <section className="home-section home-section--blue" id="skills" aria-labelledby="skills-title" data-analytics-section="skills">
         <h2 id="skills-title">{t('skills.title')}</h2>
         <p className="section-intro">{t('skills.intro')}</p>
         <div className="card-grid card-grid--two">
@@ -51,14 +54,14 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="home-section" id="experience" aria-labelledby="experience-title">
+      <section className="home-section" id="experience" aria-labelledby="experience-title" data-analytics-section="experience">
         <h2 id="experience-title">{t('experience.title')}</h2>
         <p className="section-intro">{t('experience.intro')}</p>
         <div className="card-grid card-grid--four">{experience.map((item, index) => <article className={`card ${index % 2 === 0 ? 'card--blue' : 'card--warm'}`} key={item.id}><h3>{item.role}</h3><p>{t(item.summaryKey)}</p></article>)}</div>
         <p className="public-note">{t('experience.note')}</p>
       </section>
 
-      <section className="home-section home-section--paper" id="projects" aria-labelledby="projects-title">
+      <section className="home-section home-section--paper" id="projects" aria-labelledby="projects-title" data-analytics-section="projects">
         <h2 id="projects-title">{t('projects.title')}</h2>
         <p className="section-intro">More projects are coming soon. This portfolio itself is also one of my projects.</p>
         <div className="card-grid card-grid--two">
@@ -67,18 +70,18 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="home-section home-section--blue" id="about" aria-labelledby="about-title">
+      <section className="home-section home-section--blue" id="about" aria-labelledby="about-title" data-analytics-section="about">
         <h2 id="about-title">{t('about.title')}</h2>
         <div className="about-layout"><div className="about-copy"><h3>From veterinary medicine to software development</h3><p>A short story about the career transition, the values brought from veterinary nursing into software development, how new technologies are learned, and future career goals.</p><p className="interests">Basketball&nbsp; • &nbsp;Hiking&nbsp; • &nbsp;Cats</p></div><div className="visual-placeholder about-layout__visual">Personal visual / photo</div></div>
       </section>
 
-      <section className="home-section home-section--paper" id="testimonials" aria-labelledby="testimonials-title">
+      <section className="home-section home-section--paper" id="testimonials" aria-labelledby="testimonials-title" data-analytics-section="testimonials">
         <h2 id="testimonials-title">{t('testimonials.title')}</h2>
         <p className="section-intro">Approved comments from colleagues, managers, engineers, and volunteer teammates.</p>
         <div className="card-grid card-grid--three">{[1, 2, 3].map((number) => <article className="card card--testimonial" key={number}><h3>“Testimonial placeholder {number}”</h3><p>— Colleague / Teammate</p></article>)}</div>
       </section>
 
-      <section className="home-section contact" id="contact" aria-labelledby="contact-title">
+      <section className="home-section contact" id="contact" aria-labelledby="contact-title" data-analytics-section="contact">
         <h2 id="contact-title">{t('contact.title')}</h2><p>For opportunities or collaboration, please reach out directly.</p>
         <div className="button-row" aria-label="Contact links"><span className="button button--accent" aria-disabled="true">Email</span><span className="button button--accent" aria-disabled="true">LinkedIn</span><span className="button button--accent" aria-disabled="true">GitHub</span></div>
         <p className="contact__footer">This is me — portfolio wireframe</p>

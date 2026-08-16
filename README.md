@@ -94,6 +94,24 @@ recovered; copy them before dismissing the notice.
 The `testimonial:moderate` command remains a credential-dependent emergency
 and development workflow. Browser moderation uses authenticated admin APIs.
 
+### Company analytics privacy
+
+Analytics are recorded only for visitors with an active company authorization.
+The system stores normalized page/section keys, allowlisted event types, bounded
+estimated engagement duration, and the associated encrypted-company record.
+It deliberately does not store IP addresses (including hashes), location,
+User-Agent, fingerprints, referrers, full URLs, access codes, or session tokens.
+
+Defaults are `analytics.enabled: true` and a 90-day retention period in
+`appsettings.json`; encrypted D1 settings can override both values. Set
+`analytics.enabled` to `false` to stop new ingestion without deleting retained
+aggregates. With Cloudflare API credentials configured, remove expired analytics
+using:
+
+```bash
+pnpm analytics:cleanup
+```
+
 ### Protected-profile developer workflow
 
 Set `PRIVATE_DATA_ENCRYPTION_KEY` in the current shell, then pass plaintext only

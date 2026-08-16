@@ -106,6 +106,23 @@ export const openApiDocument = {
         },
       },
     },
+    "/api/analytics/events": {
+      post: {
+        summary: "Record an authorized company analytics event",
+        description: "Accepts only allowlisted normalized events; company and session context are derived from protected authorization.",
+        requestBody: { required: true, content: { "application/json": { schema: { type: "object", properties: { eventType: { type: "string", enum: ["page_view", "section_view", "engagement"] }, pageKey: { type: "string", enum: ["home", "recommend", "access", "private"] }, sectionKey: { type: "string", enum: ["hero", "skills", "experience", "projects", "about", "testimonials", "contact", "protected-profile"] }, durationMs: { type: "integer", minimum: 0, maximum: 300000 } }, required: ["eventType", "pageKey"], additionalProperties: false } } } },
+        responses: { "204": { description: "Accepted, or safely ignored without authorized company context." }, "400": { $ref: "#/components/responses/InvalidRequest" } },
+      },
+    },
+    "/api/admin/analytics/summary": {
+      get: { summary: "Get aggregate company analytics", security: [{ adminSession: [] }], responses: { "200": { description: "Aggregate session, view, download, and estimated-engagement metrics." }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/analytics/companies": {
+      get: { summary: "List company analytics aggregates", security: [{ adminSession: [] }], responses: { "200": { description: "Company-level aggregate analytics with decrypted display names." }, "401": { $ref: "#/components/responses/AdminUnauthorized" } } },
+    },
+    "/api/admin/analytics/companies/{companyCode}": {
+      get: { summary: "Get one company's analytics aggregates", security: [{ adminSession: [] }], parameters: [{ name: "companyCode", in: "path", required: true, schema: { type: "string", format: "uuid" } }], responses: { "200": { description: "Page, section, duration, private-profile, and resume aggregates." }, "401": { $ref: "#/components/responses/AdminUnauthorized" }, "404": { description: "No analytics exist for the company." } } },
+    },
     "/api/private-profile": {
       get: {
         summary: "Get the authorized protected profile",
