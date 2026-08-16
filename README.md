@@ -16,6 +16,52 @@ pnpm install --frozen-lockfile
 pnpm check
 ```
 
+## Production deployment
+
+The `thisisme` Worker and React assets deploy together to Cloudflare Workers.
+Production uses the existing D1 database named `thisisme` through the `DB`
+binding; deployment does not create or seed another database.
+
+Complete this one-time setup before the first deployment:
+
+1. Configure these Worker runtime secrets interactively. Do not generate or
+   replace an existing production encryption key without a deliberate rotation
+   and data-migration plan, because existing encrypted data may become
+   unreadable.
+
+   ```bash
+   pnpm wrangler secret put PRIVATE_DATA_ENCRYPTION_KEY
+   pnpm wrangler secret put ADMIN_AUTH_SECRET
+   ```
+
+2. Create a GitHub Environment named `production` and add these deployment
+   secrets to it:
+
+   ```text
+   CLOUDFLARE_API_TOKEN
+   CLOUDFLARE_ACCOUNT_ID
+   ```
+
+   Use a scoped Cloudflare API token following the Worker deployment-token
+   guidance. Limit it to the account containing this Worker and only the
+   permissions required for Worker deployment and D1 migrations. Do not use a
+   Global API Key or an unrestricted account token.
+
+Every push to `main` runs `.github/workflows/deploy.yml`; it can also be rerun
+manually with `workflow_dispatch`. The workflow runs `pnpm check`, verifies the
+required Worker secrets, applies and rechecks remote D1 migrations, and then
+runs `pnpm wrangler deploy`. Migration failure stops deployment. Deployments use
+one non-cancelling production concurrency group so a migration is not interrupted
+by a newer run.
+
+The initial production URL is the Cloudflare-provided
+`https://thisisme.<account-subdomain>.workers.dev` hostname reported by Wrangler
+and recorded on the GitHub `production` environment deployment. After deployment,
+the workflow checks frontend routes, Swagger UI, the OpenAPI document, public
+testimonials, `/api/health`, `noindex, nofollow` metadata, and unauthenticated
+protected API behavior. Smoke-check failure fails the workflow but does not
+delete data, reset D1, or roll back automatically.
+
 ## Cloudflare D1
 
 The Worker uses the `DB` binding for the `thisisme` D1 database. For local
