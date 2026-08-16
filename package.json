@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "access:issue": "node --experimental-strip-types scripts/issue-access-code.mjs",
-    "private-profile:set": "node --experimental-strip-types scripts/set-private-profile.mjs"
+    "private-profile:set": "node --experimental-strip-types scripts/set-private-profile.mjs",
+    "testimonial:moderate": "node --experimental-strip-types scripts/moderate-testimonial.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

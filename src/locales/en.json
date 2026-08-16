@@ -25,5 +25,21 @@
   "projects.title": "Projects",
   "about.title": "About",
   "testimonials.title": "What People Say",
-  "contact.title": "Contact"
+  "contact.title": "Contact",
+  "recommend.title": "Testimonial Submission",
+  "recommend.intro": "Share a recommendation about working or volunteering with me.",
+  "recommend.language": "Language",
+  "recommend.authorName": "Your name",
+  "recommend.relationship": "Relationship",
+  "recommend.comment": "Testimonial / recommendation",
+  "recommend.displayPreference": "How may your name appear publicly?",
+  "recommend.displayPreference.full_name": "Full name",
+  "recommend.displayPreference.partial_name": "Partial name",
+  "recommend.displayPreference.anonymous": "Anonymous",
+  "recommend.expectation": "Your submission will be reviewed before publication. Your selected name preference controls how your name may appear.",
+  "recommend.submit": "Submit testimonial",
+  "recommend.submitting": "Submitting…",
+  "recommend.success": "Thank you. Your testimonial was submitted for review.",
+  "recommend.error.validation": "Please complete every field with a valid response.",
+  "recommend.error.server": "We could not submit your testimonial. Please try again."
 }
