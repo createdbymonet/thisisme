@@ -9,6 +9,18 @@ const unauthorized = () => Response.json({ error: "Authorization required." }, {
 const invalid = () => Response.json({ error: "Invalid request." }, { status: 400, headers: HEADERS });
 const failed = () => Response.json({ error: "Unable to complete request." }, { status: 500, headers: HEADERS });
 
+function safeErrorDetails(error: unknown) {
+  if (!(error instanceof Error)) {
+    return { errorName: "UnknownError", errorMessage: "A non-Error value was thrown." };
+  }
+
+  return {
+    errorName: error.name,
+    errorMessage: error.message,
+    ...(error.stack ? { stack: error.stack } : {}),
+  };
+}
+
 async function json(request: Request) {
   if (Number(request.headers.get("Content-Length") ?? 0) > 8_192) return null;
   try {
@@ -53,6 +65,9 @@ export async function handleAdminLogout(request: Request, env: ApplicationEnv) {
 export async function handleAdminApi(request: Request, env: ApplicationEnv, path: string) {
   if (!await requireAdminSession(request, env.DB)) return unauthorized();
   if (request.method !== "GET" && !hasValidOrigin(request)) return invalid();
+  const operation = request.method === "POST" && path === "/api/admin/access-codes"
+    ? "admin-access-code-create"
+    : "admin-request";
   try {
     if (request.method === "GET" && path === "/api/admin/access-codes") return Response.json({ accessCodes: await listAccessCodes(env.DB, env.PRIVATE_DATA_ENCRYPTION_KEY) }, { headers: HEADERS });
     if (request.method === "POST" && path === "/api/admin/access-codes") {
@@ -93,5 +108,13 @@ export async function handleAdminApi(request: Request, env: ApplicationEnv, path
       return updated ? Response.json({ updated: true }, { headers: HEADERS }) : invalid();
     }
     return new Response(null, { status: 404, headers: HEADERS });
-  } catch { console.error(JSON.stringify({ message: "Admin request failed", path })); return failed(); }
+  } catch (error) {
+    console.error(JSON.stringify({
+      message: "Admin request failed",
+      path,
+      operation,
+      ...safeErrorDetails(error),
+    }));
+    return failed();
+  }
 }
