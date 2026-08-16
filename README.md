@@ -1,5 +1,21 @@
 # React + TypeScript + Vite
 
+## Continuous integration
+
+GitHub Actions runs read-only validation for every pull request and each push to
+`main`. It installs the committed pnpm lockfile, runs lint and the production
+build, checks whitespace in the committed change range, validates secret/local
+file exclusions, and applies every migration to disposable local D1 state before
+checking critical tables and analytics privacy constraints. It never deploys or
+connects to remote D1.
+
+Run the equivalent repository checks locally with:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm check
+```
+
 ## Cloudflare D1
 
 The Worker uses the `DB` binding for the `thisisme` D1 database. For local

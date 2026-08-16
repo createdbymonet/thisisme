@@ -12,7 +12,10 @@
     "access:issue": "node --experimental-strip-types scripts/issue-access-code.mjs",
     "private-profile:set": "node --experimental-strip-types scripts/set-private-profile.mjs",
     "testimonial:moderate": "node --experimental-strip-types scripts/moderate-testimonial.mjs",
-    "analytics:cleanup": "node --experimental-strip-types scripts/cleanup-analytics.mjs"
+    "analytics:cleanup": "node --experimental-strip-types scripts/cleanup-analytics.mjs",
+    "check:migrations": "node scripts/check-migrations.mjs",
+    "check:repository": "node scripts/check-repository-safety.mjs",
+    "check": "pnpm lint && pnpm build && pnpm check:repository && pnpm check:migrations && git -c safe.directory=* diff --check"
   },
   "dependencies": {
     "react": "^19.2.8",
