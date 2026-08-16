@@ -110,12 +110,15 @@ a { color: inherit; }
 .access-card h2 { margin: 0; color: var(--color-primary-strong); font-size: 22px; line-height: 1.2; }
 .access-card input { width: 100%; }
 .access-card__button { color: var(--color-background); cursor: pointer; }
+.access-card__button:disabled { cursor: wait; opacity: 0.7; }
 .access-card p { margin: 0; font-size: 14px; line-height: 1.4; }
+.access-card .form-error { color: #8f1d1d; font-weight: 700; }
 
 .protected-preview { width: min(876px, 100%); margin-top: 28px; padding: 28px; background: var(--color-primary-muted); border-radius: 8px; }
 .protected-preview h2 { margin: 0 0 16px; color: var(--color-primary-strong); font-size: 22px; line-height: 1.2; }
 .protected-preview ul { display: flex; flex-direction: column; gap: 16px; margin: 0; padding: 0; list-style: none; }
 .protected-preview li { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px 16px; background: var(--color-paper-surface); border: 1px solid var(--color-border); font-size: 14px; line-height: 1.35; }
+.protected-preview li strong { min-width: 120px; color: var(--color-primary-strong); }
 
 .admin-login-card { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; width: min(624px, 100%); margin-top: 28px; padding: 32px; background: var(--color-paper-surface); border: 1px solid var(--color-border); border-radius: 8px; }
 .admin-login-card input { width: 100%; }

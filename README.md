@@ -69,6 +69,21 @@ Worker secret; never add the key to `appsettings.json` or `wrangler.jsonc`:
 pnpm wrangler secret put PRIVATE_DATA_ENCRYPTION_KEY
 ```
 
+### Protected-profile developer workflow
+
+Set `PRIVATE_DATA_ENCRYPTION_KEY` in the current shell, then pass plaintext only
+through stdin. The provisioning scripts write ciphertext and salted PBKDF2
+hashes to local D1 by default:
+
+```bash
+printf 'Non-production company name' | pnpm access:issue
+printf '{"legalName":"...","employment":[],"education":[],"certifications":[],"resume":null}' | pnpm private-profile:set
+```
+
+`access:issue` prints the generated access code once. Add `--remote` only when
+intentionally provisioning the configured remote database. Never place
+plaintext protected data or access codes in committed files.
+
 <details>
 <summary>日本語</summary>
 
