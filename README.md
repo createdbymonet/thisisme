@@ -395,7 +395,7 @@ pnpm install --frozen-lockfile
 Apply local D1 migrations:
 
 ```bash
-pnpm wrangler d1 migrations apply thisisme --local
+pnpm wrangler d1 migrations apply DB --local
 ```
 
 Start the application:
@@ -423,7 +423,7 @@ pnpm install --frozen-lockfile
 Local D1へMigrationを適用します。
 
 ```bash
-pnpm wrangler d1 migrations apply thisisme --local
+pnpm wrangler d1 migrations apply DB --local
 ```
 
 Applicationを起動します。
@@ -562,19 +562,19 @@ migrations/
 Apply migrations locally:
 
 ```bash
-pnpm wrangler d1 migrations apply thisisme --local
+pnpm wrangler d1 migrations apply DB --local
 ```
 
 Check migration status:
 
 ```bash
-pnpm wrangler d1 migrations list thisisme --local
+pnpm wrangler d1 migrations list DB --local
 ```
 
 For production:
 
 ```bash
-pnpm wrangler d1 migrations list thisisme --remote
+pnpm wrangler d1 migrations list DB --remote
 ```
 
 Production migrations are normally applied automatically by the deployment workflow.
@@ -598,19 +598,19 @@ migrations/
 Local Migration：
 
 ```bash
-pnpm wrangler d1 migrations apply thisisme --local
+pnpm wrangler d1 migrations apply DB --local
 ```
 
 Migration Status：
 
 ```bash
-pnpm wrangler d1 migrations list thisisme --local
+pnpm wrangler d1 migrations list DB --local
 ```
 
 Production：
 
 ```bash
-pnpm wrangler d1 migrations list thisisme --remote
+pnpm wrangler d1 migrations list DB --remote
 ```
 
 Production Migrationは通常Deployment Workflowによって自動適用されます。

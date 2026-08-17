@@ -54,11 +54,11 @@ jobs:
           done
 
       - name: Apply production D1 migrations
-        run: pnpm wrangler d1 migrations apply thisisme --remote
+        run: pnpm wrangler d1 migrations apply DB --remote
 
       - name: Verify no production migrations remain
         run: |
-          migration_status="$(pnpm wrangler d1 migrations list thisisme --remote)"
+          migration_status="$(pnpm wrangler d1 migrations list DB --remote)"
           printf '%s\n' "$migration_status"
           grep -q "No migrations to apply" <<<"$migration_status"
 

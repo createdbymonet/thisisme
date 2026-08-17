@@ -17,7 +17,7 @@ export function executeD1Sql(sql, remote) {
       wranglerEntry,
       'd1',
       'execute',
-      'thisisme',
+      'DB',
       remote ? '--remote' : '--local',
       '--file',
       filePath,
