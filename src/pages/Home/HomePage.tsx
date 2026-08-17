@@ -80,8 +80,8 @@ export function HomePage() {
 
   return <div className="home">
     <header className="site-header">
-      <a className="site-header__brand" href="#top" aria-label="This is me home">This is me</a>
-      <nav className="site-header__nav" aria-label="Main navigation">{navigation.map(([key, id]) => <a href={`#${id}`} key={id}>{t(key)}</a>)}</nav>
+      <a className="site-header__brand" href="#top" aria-label={t('header.homeLabel')}>This is me</a>
+      <nav className="site-header__nav" aria-label={t('header.mainNavigationLabel')}>{navigation.map(([key, id]) => <a href={`#${id}`} key={id}>{t(key)}</a>)}</nav>
       <div className="site-header__actions">
         <span className="language"><button type="button" aria-pressed={language === 'en'} onClick={() => setLanguage('en')}>EN</button><span aria-hidden="true">|</span><button type="button" aria-pressed={language === 'ja'} onClick={() => setLanguage('ja')}>日本語</button></span>
         <Link className="button button--small" to="/access">{t('nav.privateProfile')}</Link>
@@ -93,11 +93,11 @@ export function HomePage() {
         <div className="hero__copy">
           <p className="eyebrow">{t('hero.eyebrow')}</p>
           <h1 id="hero-title">{t('hero.title')}</h1>
-          <p className="hero__stack">TypeScript • React • C# • Web Application Development</p>
+          <p className="hero__stack">TypeScript • React • C# • {t('hero.webApplicationDevelopment')}</p>
           <p className="hero__summary">{t('hero.summary')}</p>
           <div className="button-row"><a className="button" href="#experience">{t('hero.viewExperience')}</a><a className="button" href="#projects">{t('hero.viewProjects')}</a></div>
         </div>
-        <div className="visual-placeholder hero__visual">Photo / visual placeholder</div>
+        <div className="visual-placeholder hero__visual">{t('hero.visualPlaceholder')}</div>
       </section>
 
       <section className="home-section home-section--blue" id="skills" aria-labelledby="skills-title" data-analytics-section="skills">
@@ -112,22 +112,22 @@ export function HomePage() {
       <section className="home-section" id="experience" aria-labelledby="experience-title" data-analytics-section="experience">
         <h2 id="experience-title">{t('experience.title')}</h2>
         <p className="section-intro">{t('experience.intro')}</p>
-        <div className="card-grid card-grid--four">{experience.map((item, index) => <article className={`card ${index % 2 === 0 ? 'card--blue' : 'card--warm'}`} key={item.id}><h3>{item.role}</h3><p>{t(item.summaryKey)}</p></article>)}</div>
+        <div className="card-grid card-grid--four">{experience.map((item, index) => <article className={`card ${index % 2 === 0 ? 'card--blue' : 'card--warm'}`} key={item.id}><h3>{t(item.roleKey)}</h3><p>{t(item.summaryKey)}</p></article>)}</div>
         <p className="public-note">{t('experience.note')}</p>
       </section>
 
       <section className="home-section home-section--paper" id="projects" aria-labelledby="projects-title" data-analytics-section="projects">
         <h2 id="projects-title">{t('projects.title')}</h2>
-        <p className="section-intro">More projects are coming soon. This portfolio itself is also one of my projects.</p>
+        <p className="section-intro">{t('projects.intro')}</p>
         <div className="card-grid card-grid--two">
-          <article className="card card--navy"><h3>This is me</h3><ul><li>React + TypeScript + Vite</li><li>Cloudflare Workers + D1</li><li>OpenAPI + Swagger UI</li><li>Designed in Figma</li></ul></article>
-          <article className="card card--warm"><h3>Coming Soon</h3><p>Additional projects will be added later.</p></article>
+          <article className="card card--navy"><h3>This is me</h3><ul><li>React + TypeScript + Vite</li><li>Cloudflare Workers + D1</li><li>OpenAPI + Swagger UI</li><li>{t('projects.designedInFigma')}</li></ul></article>
+          <article className="card card--warm"><h3>{t('projects.comingSoon')}</h3><p>{t('projects.comingSoonDescription')}</p></article>
         </div>
       </section>
 
       <section className="home-section home-section--blue" id="about" aria-labelledby="about-title" data-analytics-section="about">
         <h2 id="about-title">{t('about.title')}</h2>
-        <div className="about-layout"><div className="about-copy"><h3>From veterinary medicine to software development</h3><p>A short story about the career transition, the values brought from veterinary nursing into software development, how new technologies are learned, and future career goals.</p><p className="interests">Basketball&nbsp; • &nbsp;Hiking&nbsp; • &nbsp;Cats</p></div><div className="visual-placeholder about-layout__visual">Personal visual / photo</div></div>
+        <div className="about-layout"><div className="about-copy"><h3>{t('about.careerTransition')}</h3><p>{t('about.description')}</p><p className="interests">{t('about.interests')}</p></div><div className="visual-placeholder about-layout__visual">{t('about.visualPlaceholder')}</div></div>
       </section>
 
       <section className="home-section home-section--paper" id="testimonials" aria-labelledby="testimonials-title" data-analytics-section="testimonials">
@@ -145,9 +145,9 @@ export function HomePage() {
       </section>
 
       <section className="home-section contact" id="contact" aria-labelledby="contact-title" data-analytics-section="contact">
-        <h2 id="contact-title">{t('contact.title')}</h2><p>For opportunities or collaboration, please reach out directly.</p>
-        <div className="button-row" aria-label="Contact links"><span className="button button--accent" aria-disabled="true">Email</span><span className="button button--accent" aria-disabled="true">LinkedIn</span><span className="button button--accent" aria-disabled="true">GitHub</span></div>
-        <p className="contact__footer">This is me — portfolio wireframe</p>
+        <h2 id="contact-title">{t('contact.title')}</h2><p>{t('contact.intro')}</p>
+        <div className="button-row" aria-label={t('contact.linksLabel')}><span className="button button--accent" aria-disabled="true">{t('contact.email')}</span><span className="button button--accent" aria-disabled="true">LinkedIn</span><span className="button button--accent" aria-disabled="true">GitHub</span></div>
+        <p className="contact__footer">This is me — {t('contact.footer')}</p>
       </section>
     </main>
   </div>
