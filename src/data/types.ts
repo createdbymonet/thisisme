@@ -9,6 +9,6 @@ export type Skill = {
 
 export type Experience = {
   id: string
-  role: string
+  roleKey: TranslationKey
   summaryKey: TranslationKey
 }
