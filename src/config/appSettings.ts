@@ -6,6 +6,9 @@ export type AppSettings = {
   application: {
     defaultLanguage: SupportedLanguage
   }
+  contact: {
+    githubUrl: string
+  }
   security: {
     encryptionVersion: number
   }
@@ -33,6 +36,9 @@ const configuredLanguage = appSettingsJson.application.defaultLanguage
 export const appSettings: AppSettings = {
   application: {
     defaultLanguage: isSupportedLanguage(configuredLanguage) ? configuredLanguage : 'en',
+  },
+  contact: {
+    githubUrl: appSettingsJson.contact.githubUrl,
   },
   security: {
     encryptionVersion: appSettingsJson.security.encryptionVersion,
