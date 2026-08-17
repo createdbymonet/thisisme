@@ -20,6 +20,24 @@
 			"database_id": "c293d49f-d394-40d4-9383-4c31a6d3417f"
 		}
 	],
+	"env": {
+		"development": {
+			"workers_dev": true,
+			"secrets": {
+				"required": [
+					"PRIVATE_DATA_ENCRYPTION_KEY",
+					"ADMIN_AUTH_SECRET"
+				]
+			},
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "thisisme-development",
+					"database_id": "4539f30c-4e43-4115-a7c3-83e2ff1419f2"
+				}
+			]
+		}
+	},
 	"observability": {
 		"enabled": true
 	}
