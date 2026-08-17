@@ -19,6 +19,7 @@ for (let index = 1; index < numbers.length; index += 1) {
 const stateDirectory = mkdtempSync(join(tmpdir(), 'thisisme-ci-d1-'))
 const wranglerEntry = join(process.cwd(), 'node_modules', 'wrangler', 'bin', 'wrangler.js')
 const common = [wranglerEntry, 'd1']
+const databaseBinding = 'DB'
 
 function wrangler(args, capture = false) {
   const result = spawnSync(process.execPath, [...common, ...args, '--local', '--persist-to', stateDirectory], {
@@ -36,14 +37,14 @@ function wrangler(args, capture = false) {
 }
 
 try {
-  wrangler(['migrations', 'apply', 'thisisme'])
-  const migrationStatus = wrangler(['migrations', 'list', 'thisisme'], true)
+  wrangler(['migrations', 'apply', databaseBinding])
+  const migrationStatus = wrangler(['migrations', 'list', databaseBinding], true)
   const plainMigrationStatus = migrationStatus.replace(/\x1b\[[0-?]*[ -/]*[@-~]/gu, '')
   if (!plainMigrationStatus.includes('No migrations to apply')) {
     throw new Error(`Pending migrations remain after apply:\n${plainMigrationStatus}`)
   }
 
-  const output = wrangler(['execute', 'thisisme', '--command', `
+  const output = wrangler(['execute', databaseBinding, '--command', `
     SELECT name FROM sqlite_master
     WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name;
     PRAGMA table_info(analytics_sessions);
