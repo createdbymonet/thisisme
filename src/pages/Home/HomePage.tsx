@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { appSettings, type SupportedLanguage } from '../../config/appSettings'
 import experienceJson from '../../data/experience.json' with { type: 'json' }
@@ -11,6 +11,31 @@ const navigation: Array<[TranslationKey, string]> = [['nav.skills', 'skills'], [
 const skills = skillsJson as Skill[]
 const experience = experienceJson as Experience[]
 
+type PublicTestimonial = {
+  authorName: string | null
+  isAnonymous: boolean
+  relationship: string
+  comment: string
+}
+
+type TestimonialState =
+  | { status: 'loading' }
+  | { status: 'ready'; testimonials: PublicTestimonial[] }
+  | { status: 'failed' }
+
+function isPublicTestimonialResponse(value: unknown): value is { testimonials: PublicTestimonial[] } {
+  if (typeof value !== 'object' || value === null || !('testimonials' in value) || !Array.isArray(value.testimonials)) return false
+
+  return value.testimonials.every((testimonial) => (
+    typeof testimonial === 'object'
+    && testimonial !== null
+    && ('authorName' in testimonial && (typeof testimonial.authorName === 'string' || testimonial.authorName === null))
+    && ('isAnonymous' in testimonial && typeof testimonial.isAnonymous === 'boolean')
+    && ('relationship' in testimonial && typeof testimonial.relationship === 'string')
+    && ('comment' in testimonial && typeof testimonial.comment === 'string')
+  ))
+}
+
 function SkillList({ skills }: { skills: string[] }) {
   return <p className="skill-list">{skills.map((skill, index) => <span key={skill}>{skill}{index < skills.length - 1 && <i aria-hidden="true">•</i>}</span>)}</p>
 }
@@ -19,9 +44,39 @@ export function HomePage() {
   usePageAnalytics('home')
   useSectionAnalytics('home')
   const [language, setLanguage] = useState<SupportedLanguage>(appSettings.application.defaultLanguage)
+  const [testimonialState, setTestimonialState] = useState<TestimonialState>({ status: 'loading' })
   const t = (key: TranslationKey) => translate(language, key)
   const professionalSkills = skills.filter((skill) => skill.experienceType === 'professional').map((skill) => skill.name)
   const learningSkills = skills.filter((skill) => skill.experienceType === 'learning').map((skill) => skill.name)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadTestimonials() {
+      try {
+        const response = await fetch('/api/testimonials', { signal: controller.signal })
+        if (!response.ok) {
+          setTestimonialState({ status: 'failed' })
+          return
+        }
+
+        const data = await response.json() as unknown
+        if (!isPublicTestimonialResponse(data)) {
+          setTestimonialState({ status: 'failed' })
+          return
+        }
+
+        setTestimonialState({ status: 'ready', testimonials: data.testimonials })
+      } catch (error) {
+        if (!(error instanceof DOMException && error.name === 'AbortError')) {
+          setTestimonialState({ status: 'failed' })
+        }
+      }
+    }
+
+    void loadTestimonials()
+    return () => controller.abort()
+  }, [])
 
   return <div className="home">
     <header className="site-header">
@@ -77,8 +132,16 @@ export function HomePage() {
 
       <section className="home-section home-section--paper" id="testimonials" aria-labelledby="testimonials-title" data-analytics-section="testimonials">
         <h2 id="testimonials-title">{t('testimonials.title')}</h2>
-        <p className="section-intro">Approved comments from colleagues, managers, engineers, and volunteer teammates.</p>
-        <div className="card-grid card-grid--three">{[1, 2, 3].map((number) => <article className="card card--testimonial" key={number}><h3>“Testimonial placeholder {number}”</h3><p>— Colleague / Teammate</p></article>)}</div>
+        <p className="section-intro">{t('testimonials.intro')}</p>
+        {testimonialState.status === 'loading' && <p role="status">{t('testimonials.loading')}</p>}
+        {testimonialState.status === 'failed' && <p role="alert">{t('testimonials.failure')}</p>}
+        {testimonialState.status === 'ready' && testimonialState.testimonials.length === 0 && <p>{t('testimonials.empty')}</p>}
+        {testimonialState.status === 'ready' && testimonialState.testimonials.length > 0 && <div className="card-grid card-grid--three">{testimonialState.testimonials.map((testimonial, index) => (
+          <article className="card card--testimonial" key={`${testimonial.authorName ?? 'anonymous'}-${index}`}>
+            <h3>“{testimonial.comment}”</h3>
+            <p>— {testimonial.isAnonymous || testimonial.authorName === null ? t('testimonials.anonymous') : testimonial.authorName} / {testimonial.relationship}</p>
+          </article>
+        ))}</div>}
       </section>
 
       <section className="home-section contact" id="contact" aria-labelledby="contact-title" data-analytics-section="contact">
