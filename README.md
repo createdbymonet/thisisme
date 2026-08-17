@@ -14,6 +14,12 @@ Live application:
 https://thisisme.suwamoe-oishimoe.workers.dev/
 ```
 
+Development deployment:
+
+```text
+https://thisisme-development.suwamoe-oishimoe.workers.dev/
+```
+
 <details>
 <summary>日本語</summary>
 
@@ -29,6 +35,12 @@ Production URL:
 
 ```text
 https://thisisme.suwamoe-oishimoe.workers.dev/
+```
+
+Development URL:
+
+```text
+https://thisisme-development.suwamoe-oishimoe.workers.dev/
 ```
 
 </details>
@@ -536,7 +548,10 @@ Access Codeは一度だけ表示され、後から復元することはできま
 
 ## Cloudflare D1
 
-The Worker uses the `DB` binding for the `thisisme` D1 database.
+Both Workers use the `DB` binding with separate D1 databases:
+
+- `main` / development: `thisisme-development`
+- `release` / production: `thisisme`
 
 Migration files are stored in:
 
@@ -569,7 +584,10 @@ Production migrations are normally applied automatically by the deployment workf
 
 ## Cloudflare D1
 
-Workerは `thisisme` D1 Databaseに対して `DB` Bindingを使用します。
+両方のWorkerは `DB` Bindingを使用し、環境ごとに異なるD1 Databaseへ接続します。
+
+- `main` / Development：`thisisme-development`
+- `release` / Production：`thisisme`
 
 Migration File：
 
@@ -660,24 +678,34 @@ pnpm check
 
 ---
 
-## Production deployment
+## Development and production deployment
 
 The application is deployed to Cloudflare Workers through GitHub Actions.
 
-Every push to `main` runs the production deployment workflow.
+- Every push to `main` deploys the `thisisme-development` Worker with the separate `thisisme-development` D1 database.
+- Every push to `release` deploys the production `thisisme` Worker with the production `thisisme` D1 database.
+- Feature branches and pull request activity run CI but do not deploy.
 
-The workflow:
+Release flow:
+
+```text
+feature/* -> pull request -> main -> development
+main -> merge when ready -> release -> production
+```
+
+Each deployment workflow:
 
 1. installs dependencies
 2. runs repository validation
 3. verifies required Worker secrets
 4. applies remote D1 migrations
 5. deploys the Worker and frontend assets
-6. runs production smoke tests
+6. runs deployment smoke tests
 
-Production deployment uses the GitHub Environment:
+Deployments use matching GitHub Environments:
 
 ```text
+development
 production
 ```
 
@@ -693,11 +721,20 @@ The Cloudflare token should be scoped only to the permissions required for Worke
 <details>
 <summary>日本語</summary>
 
-## Production Deployment
+## Development / Production Deployment
 
 ApplicationはGitHub ActionsからCloudflare WorkersへDeployします。
 
-`main` へのPushでProduction Deployment Workflowが実行されます。
+- `main` へのPushは、専用の `thisisme-development` D1 Databaseを使用する `thisisme-development` WorkerへDeployします。
+- `release` へのPushは、Production用 `thisisme` D1 Databaseを使用する `thisisme` WorkerへDeployします。
+- Feature BranchへのPushおよびPull RequestではDeployせず、CIのみを実行します。
+
+Release Flow：
+
+```text
+feature/* -> Pull Request -> main -> Development
+main -> Release準備完了後にMerge -> release -> Production
+```
 
 Workflow：
 
@@ -706,11 +743,12 @@ Workflow：
 3. Worker Secret確認
 4. Remote D1 Migration
 5. Worker / Frontend Deploy
-6. Production Smoke Test
+6. Deployment Smoke Test
 
-GitHub Environment：
+GitHub Environments：
 
 ```text
+development
 production
 ```
 
