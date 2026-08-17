@@ -7,7 +7,6 @@ export type AppSettings = {
     defaultLanguage: SupportedLanguage
   }
   contact: {
-    emailAddress: string
     linkedinUrl: string
     githubUrl: string
   }
@@ -40,7 +39,6 @@ export const appSettings: AppSettings = {
     defaultLanguage: isSupportedLanguage(configuredLanguage) ? configuredLanguage : 'en',
   },
   contact: {
-    emailAddress: appSettingsJson.contact.emailAddress,
     linkedinUrl: appSettingsJson.contact.linkedinUrl,
     githubUrl: appSettingsJson.contact.githubUrl,
   },

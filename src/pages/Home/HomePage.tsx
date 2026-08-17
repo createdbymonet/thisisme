@@ -144,9 +144,9 @@ export function HomePage() {
         ))}</div>}
       </section>
 
-      <section className="home-section contact" id="contact" aria-labelledby="contact-title" data-analytics-section="contact">
-        <h2 id="contact-title">{t('contact.title')}</h2><p>{t('contact.intro')}</p>
-        <div className="button-row" aria-label={t('contact.linksLabel')}><a className="button button--accent" href={`mailto:${appSettings.contact.emailAddress}`}>{t('contact.email')}</a><a className="button button--accent" href={appSettings.contact.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="button button--accent" href={appSettings.contact.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a></div>
+      <section className="home-section contact" id="contact" aria-labelledby="links-title" data-analytics-section="contact">
+        <h2 id="links-title">{t('contact.title')}</h2><p>{t('contact.intro')}</p>
+        <div className="button-row" aria-label={t('contact.linksLabel')}><a className="button button--accent" href={appSettings.contact.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a><a className="button button--accent" href={appSettings.contact.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a></div>
         <p className="contact__footer">This is me — {t('contact.footer')}</p>
       </section>
     </main>
