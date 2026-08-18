@@ -39,6 +39,8 @@ if (typeof testimonials !== 'object' || testimonials === null || !Array.isArray(
 }
 
 await request('/api/private-profile', 401);
+await request('/api/private/resume', 401);
+await request('/api/private/resume?download=true', 401);
 await request('/api/admin/session', 401);
 await request('/api/admin/access-codes', 401);
 

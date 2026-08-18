@@ -154,6 +154,21 @@ export const openApiDocument = {
         },
       },
     },
+    "/api/private/resume": {
+      get: {
+        summary: "View or download the authorized resume",
+        description: "Requires the short-lived protected-profile session cookie.",
+        security: [{ protectedProfileSession: [] }],
+        parameters: [{ name: "download", in: "query", required: false, schema: { type: "boolean", default: false } }],
+        responses: {
+          "200": { description: "The resume PDF, returned inline by default or as an attachment when download=true.", content: { "application/pdf": {} } },
+          "401": { $ref: "#/components/responses/AuthorizationRequired" },
+          "404": { description: "The resume is unavailable." },
+          "503": { description: "Resume storage is not configured for this environment." },
+          "500": { $ref: "#/components/responses/InternalServerError" },
+        },
+      },
+    },
     "/api/testimonials": {
       get: {
         summary: "List approved testimonials",
