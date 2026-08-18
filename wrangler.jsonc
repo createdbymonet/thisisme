@@ -20,6 +20,12 @@
 			"database_id": "c293d49f-d394-40d4-9383-4c31a6d3417f"
 		}
 	],
+	"r2_buckets": [
+		{
+			"binding": "PRIVATE_FILES",
+			"bucket_name": "thisisme-production-private"
+		}
+	],
 	"env": {
 		"development": {
 			"workers_dev": true,
@@ -34,6 +40,12 @@
 					"binding": "DB",
 					"database_name": "thisisme-development",
 					"database_id": "4539f30c-4e43-4115-a7c3-83e2ff1419f2"
+				}
+			],
+			"r2_buckets": [
+				{
+					"binding": "PRIVATE_FILES",
+					"bucket_name": "thisisme-development-private"
 				}
 			]
 		}

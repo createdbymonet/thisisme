@@ -66,8 +66,17 @@ jobs:
       - name: Deploy development Worker and frontend assets
         id: deploy
         run: |
+          set +e
           deploy_output="$(pnpm wrangler deploy --env development 2>&1)"
+          deploy_status=$?
+          set -e
+
           printf '%s\n' "$deploy_output"
+
+          if [[ "$deploy_status" -ne 0 ]]; then
+            exit "$deploy_status"
+          fi
+
           deploy_url="$(grep -Eo 'https://[A-Za-z0-9.-]+\.workers\.dev' <<<"$deploy_output" | tail -n 1)"
           if [[ -z "$deploy_url" ]]; then
             echo "Wrangler did not report a workers.dev development URL." >&2
