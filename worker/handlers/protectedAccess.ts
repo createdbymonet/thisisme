@@ -84,3 +84,34 @@ export async function handlePrivateProfile(request: Request, env: ApplicationEnv
     return jsonError({ error: "Internal server error." }, 500);
   }
 }
+
+export async function handlePrivateResume(request: Request, env: ApplicationEnv) {
+  try {
+    const sessionToken = readSessionToken(request);
+    if (!sessionToken || !await authorizeSession(env.DB, sessionToken)) {
+      return jsonError(SESSION_REQUIRED_RESPONSE, 401);
+    }
+
+    if (!env.PRIVATE_FILES) {
+      return jsonError({ error: "Resume unavailable." }, 503);
+    }
+
+    const resume = await env.PRIVATE_FILES.get("moe-oishi-resume.pdf");
+    if (!resume) {
+      return jsonError({ error: "Resume unavailable." }, 404);
+    }
+
+    const download = new URL(request.url).searchParams.get("download") === "true";
+    return new Response(resume.body, {
+      headers: {
+        ...NO_STORE_HEADERS,
+        "Content-Type": "application/pdf",
+        "Content-Disposition": `${download ? "attachment" : "inline"}; filename="moe-oishi-resume.pdf"`,
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
+  } catch {
+    logFailure(new URL(request.url).pathname);
+    return jsonError({ error: "Internal server error." }, 500);
+  }
+}

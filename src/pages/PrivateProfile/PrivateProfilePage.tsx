@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { StandalonePage } from '../../components/layout/StandalonePage'
 import { usePageAnalytics, useSectionAnalytics } from '../../analytics'
+import { appSettings, type SupportedLanguage } from '../../config/appSettings'
+import { translate, type TranslationKey } from '../../i18n'
 
 type PrivateProfile = {
   legalName: string
@@ -21,6 +23,8 @@ export function PrivateProfilePage() {
   usePageAnalytics('private')
   useSectionAnalytics('private')
   const [state, setState] = useState<ProfileState>({ status: 'loading' })
+  const [language, setLanguage] = useState<SupportedLanguage>(appSettings.application.defaultLanguage)
+  const t = (key: TranslationKey) => translate(language, key)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -70,6 +74,17 @@ export function PrivateProfilePage() {
           <li><strong>Certifications</strong><span>{state.profile.certifications.join(' • ') || 'Not provided'}</span></li>
           <li><strong>Resume</strong><span>{state.profile.resume ?? 'Not provided'}</span></li>
         </ul>}
+        {state.status === 'authorized' && <>
+          <div className="language" aria-label="Resume language / レジュメの言語">
+            <button type="button" aria-pressed={language === 'en'} onClick={() => setLanguage('en')}>EN</button>
+            <span aria-hidden="true">|</span>
+            <button type="button" aria-pressed={language === 'ja'} onClick={() => setLanguage('ja')}>日本語</button>
+          </div>
+          <div className="button-row">
+            <a className="button" href="/api/private/resume" target="_blank" rel="noopener noreferrer">{t('privateProfile.viewResume')}</a>
+            <a className="button" href="/api/private/resume?download=true" download="moe-oishi-resume.pdf">{t('privateProfile.downloadResume')}</a>
+          </div>
+        </>}
       </section>
     </StandalonePage>
   )

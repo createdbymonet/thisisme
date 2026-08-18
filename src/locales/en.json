@@ -50,6 +50,8 @@
   "contact.intro": "Find me on LinkedIn and GitHub.",
   "contact.linksLabel": "Profile links",
   "contact.footer": "portfolio wireframe",
+  "privateProfile.viewResume": "View Resume (PDF)",
+  "privateProfile.downloadResume": "Download Resume (PDF)",
   "recommend.title": "Testimonial Submission",
   "recommend.intro": "Share a recommendation about working or volunteering with me.",
   "recommend.language": "Language",
