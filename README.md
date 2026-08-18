@@ -11,13 +11,13 @@ This project began with three goals:
 Live application:
 
 ```text
-https://thisisme.suwamoe-oishimoe.workers.dev/
+https://thisisme.sumihana.workers.dev/
 ```
 
 Development deployment:
 
 ```text
-https://thisisme-development.suwamoe-oishimoe.workers.dev/
+https://thisisme-development.sumihana.workers.dev/
 ```
 
 <details>
@@ -34,13 +34,13 @@ React、TypeScript、Cloudflare Workers、Cloudflare D1、OpenAPI、Swagger UI�
 Production URL:
 
 ```text
-https://thisisme.suwamoe-oishimoe.workers.dev/
+https://thisisme.sumihana.workers.dev/
 ```
 
 Development URL:
 
 ```text
-https://thisisme-development.suwamoe-oishimoe.workers.dev/
+https://thisisme-development.sumihana.workers.dev/
 ```
 
 </details>
