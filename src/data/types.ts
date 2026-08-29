@@ -5,10 +5,12 @@ export type Skill = {
   name: string
   category: string
   experienceType: 'professional' | 'learning'
+  descriptionKey: TranslationKey
 }
 
 export type Experience = {
   id: string
   roleKey: TranslationKey
   summaryKey: TranslationKey
+  descriptionKey: TranslationKey
 }
