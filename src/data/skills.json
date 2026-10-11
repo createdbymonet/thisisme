@@ -1,17 +1,83 @@
 [
-  { "id": "typescript", "name": "TypeScript", "category": "language", "experienceType": "professional", "descriptionKey": "skills.typescript.description" },
-  { "id": "javascript", "name": "JavaScript", "category": "language", "experienceType": "professional", "descriptionKey": "skills.javascript.description" },
-  { "id": "vue-js", "name": "Vue.js", "category": "frontend", "experienceType": "professional", "descriptionKey": "skills.vue.description" },
-  { "id": "react", "name": "React", "category": "frontend", "experienceType": "professional", "descriptionKey": "skills.react.description" },
-  { "id": "next-js", "name": "Next.js", "category": "frontend", "experienceType": "learning", "descriptionKey": "skills.next.description" },
-  { "id": "c-sharp", "name": "C#", "category": "language", "experienceType": "professional", "descriptionKey": "skills.csharp.description" },
-  { "id": "rest-api", "name": "REST API / OpenAPI", "category": "backend", "experienceType": "professional", "descriptionKey": "skills.api.description" },
-  { "id": "testing", "name": "Testing", "category": "engineering", "experienceType": "professional", "descriptionKey": "skills.testing.description" },
-  { "id": "requirements-analysis", "name": "Requirements Analysis", "category": "engineering", "experienceType": "professional", "descriptionKey": "skills.requirements.description" },
-  { "id": "git-github", "name": "Git / GitHub", "category": "tooling", "experienceType": "professional", "descriptionKey": "skills.git.description" },
-  { "id": "debugging", "name": "Debugging", "category": "engineering", "experienceType": "professional", "descriptionKey": "skills.debugging.description" },
-  { "id": "cloudflare-workers", "name": "Cloudflare Workers", "category": "backend", "experienceType": "learning", "descriptionKey": "skills.workers.description" },
-  { "id": "cloudflare-d1", "name": "Cloudflare D1", "category": "database", "experienceType": "learning", "descriptionKey": "skills.d1.description" },
-  { "id": "vite", "name": "Vite", "category": "tooling", "experienceType": "learning", "descriptionKey": "skills.vite.description" },
-  { "id": "serverless-architecture", "name": "Serverless Architecture", "category": "architecture", "experienceType": "learning", "descriptionKey": "skills.serverless.description" }
+  {
+    "id": "typescript",
+    "category": "language",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "TypeScript"
+  },
+  {
+    "id": "vue-js",
+    "category": "frontend",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "Vue.js"
+  },
+  {
+    "id": "react",
+    "category": "frontend",
+    "experienceTypes": [
+      "personal"
+    ],
+    "name": "React"
+  },
+  {
+    "id": "next-js",
+    "category": "frontend",
+    "experienceTypes": [
+      "personal",
+      "volunteer"
+    ],
+    "name": "Next.js"
+  },
+  {
+    "id": "c-sharp",
+    "category": "language",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "C#"
+  },
+  {
+    "id": "rest-api",
+    "category": "backend",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "REST API / OpenAPI"
+  },
+  {
+    "id": "vitest",
+    "category": "engineering",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "Vitest"
+  },
+  {
+    "id": "e2e",
+    "category": "engineering",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "e2e"
+  },
+  {
+    "id": "git-github",
+    "category": "tooling",
+    "experienceTypes": [
+      "work"
+    ],
+    "name": "Git / GitHub"
+  },
+  {
+    "id": "cloudflare",
+    "category": "platform",
+    "experienceTypes": [
+      "personal"
+    ],
+    "name": "Cloudflare"
+  }
 ]

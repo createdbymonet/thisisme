@@ -1,19 +1,16 @@
+## Current development branch
+
+The private profile, access codes, resume delivery, administrator portal, and company analytics have been removed from the current implementation. The public portfolio remains; testimonial display, submission, and moderation are also removed. Existing database migrations are retained as history; the owner has deleted both production and development D1 databases. The version history below describes earlier releases.
+
+現在の実装では、非公開プロフィール、アクセスコード、レジュメ配信、管理者画面、企業別分析を削除しています。公開ポートフォリオは維持し、推薦コメントの表示・投稿・承認機能も削除しています。既存のDBマイグレーションは履歴として保持し、本番・開発のD1 Databaseは所有者が削除済みです。以下のバージョン履歴は過去のリリースについての記録です。
+
 ## Features
 
 * Public portfolio
 * English / Japanese localization
 * Responsive desktop, tablet, and mobile layouts
-* Company-specific access codes
-* Protected private profile
-* Protected resume viewing and download
-* Administrator portal
-* Access-code issuance, deactivation, and reissue
-* Privacy-conscious company analytics
-* Testimonial submission and moderation
 * OpenAPI specification
 * Swagger UI
-* Cloudflare D1 persistence
-* Private Cloudflare R2 storage
 * GitHub Actions CI
 * Separate development and production deployments
 
@@ -25,17 +22,8 @@
 * Public Portfolio
 * 英語 / 日本語切り替え
 * Desktop / Tablet / Mobile対応
-* 企業ごとのAccess Code
-* Protected Private Profile
-* 認証付きレジュメ閲覧・ダウンロード
-* Administrator Portal
-* Access Codeの発行・無効化・再発行
-* Privacyに配慮したCompany Analytics
-* Testimonial投稿・承認
 * OpenAPI Specification
 * Swagger UI
-* Cloudflare D1
-* Private Cloudflare R2 Storage
 * GitHub Actions CI
 * Development / Production分離Deploy
 
@@ -56,8 +44,6 @@
 ### Backend / Infrastructure
 
 * Cloudflare Workers
-* Cloudflare D1
-* Cloudflare R2
 * Web Crypto API
 * OpenAPI
 * Swagger UI
@@ -87,8 +73,6 @@
 ### Backend / Infrastructure
 
 * Cloudflare Workers
-* Cloudflare D1
-* Cloudflare R2
 * Web Crypto API
 * OpenAPI
 * Swagger UI
@@ -240,3 +224,7 @@ AI-only implementationの実験はVersion `2.0.0.0` まで継続しました。
 今後はChatGPTやCodexを開発Toolとして引き続き利用しながら、Project Owner自身によるSource Codeの直接実装へ移行する可能性があります。
 
 </details>
+
+### Retired-feature database cleanup
+
+Both `thisisme` and `thisisme-development` D1 databases were deleted by the owner. The application no longer uses a database. D1 bindings, migration checks, and deployment migration steps have been removed. SQL migrations are retained only as historical records and are not applied by CI or deployment workflows.

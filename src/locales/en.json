@@ -1,123 +1,83 @@
 {
-  "nav.skills": "Skills",
-  "nav.experience": "Experience",
-  "nav.projects": "Projects",
-  "nav.about": "About",
-  "nav.testimonials": "What People Say",
-  "nav.contact": "Links",
-  "nav.privateProfile": "Private Profile",
-  "nav.menu": "Menu",
-  "nav.close": "Close",
-  "header.homeLabel": "This is me home",
-  "header.mainNavigationLabel": "Main navigation",
-  "header.languageLabel": "Language",
-  "hero.eyebrow": "SOFTWARE ENGINEER",
-  "hero.title": "Hi, I build web applications.",
-  "hero.titleDesktop": "Hi, I’m Moe. I build thoughtful digital experiences.",
-  "hero.titleCompact": "Hi, I’m Moe. Software Developer in Canada.",
-  "hero.locationDesktop": "CALGARY, ALBERTA — CANADA",
-  "hero.locationCompact": "HELLO FROM CALGARY",
-  "hero.summary": "Frontend-focused developer with experience across product development, testing, and collaborative problem solving.",
-  "hero.viewWork": "View my work",
-  "hero.photoAlt": "Portfolio landscape",
-  "hero.photoPending": "Portfolio photo asset pending",
-  "hero.viewExperience": "View Experience",
-  "hero.viewProjects": "View Projects",
-  "hero.webApplicationDevelopment": "Web Application Development",
-  "hero.visualPlaceholder": "Photo / visual placeholder",
-  "sections.eyebrow": "EXPLORE",
-  "sections.carouselLabel": "Horizontally scrollable cards",
-  "skills.title": "Skills",
-  "skills.intro": "Professional skills are separated from technologies learned while building this portfolio.",
-  "skills.carouselIntro": "Each skill gets context: not just what I know, but how I use it.",
-  "skills.professional": "Professional Skills",
-  "skills.learning": "Learning through This is me",
-  "skills.professionalBadge": "Professional",
-  "skills.learningBadge": "Personal / volunteer",
-  "skills.typescript.description": "My main language for maintainable frontend work. Strong typing helps me make complex UI behavior safer to change.",
-  "skills.javascript.description": "The browser language underneath my frontend work, used for product behavior, integrations, and practical debugging.",
-  "skills.vue.description": "The framework I have used most professionally, from component design to improving established product flows.",
-  "skills.react.description": "Used professionally and in personal and volunteer work to create composable, accessible user interfaces.",
-  "skills.next.description": "A growing part of my toolkit through personal projects and volunteer development in Canada.",
-  "skills.csharp.description": "Useful when I need to move beyond the frontend into APIs, debugging, and the full product flow.",
-  "skills.api.description": "I work with API contracts from both sides: integrating frontend clients and contributing to clear, documented services.",
-  "skills.testing.description": "I use testing to protect product behavior, clarify edge cases, and make ongoing changes safer.",
-  "skills.requirements.description": "I turn product needs into concrete behavior, surface ambiguity early, and keep implementation aligned with intent.",
-  "skills.git.description": "The everyday collaboration layer for focused changes, code review, traceable decisions, and reliable delivery.",
-  "skills.debugging.description": "A methodical practice of narrowing symptoms, checking assumptions, and following data across the product stack.",
-  "skills.workers.description": "Learned through this portfolio to run TypeScript APIs close to users without managing a traditional server.",
-  "skills.d1.description": "Used in this portfolio for access, testimonials, settings, and analytics on a serverless SQLite database.",
-  "skills.vite.description": "Used to keep this React and TypeScript project fast to develop, type-check, and build.",
-  "skills.serverless.description": "Explored through personal work that combines Workers, D1, and R2 into a small, maintainable platform.",
-  "experience.title": "Experience",
-  "experience.intro": "A career journey from veterinary nursing to software engineering.",
-  "experience.carouselIntro": "A career story from veterinary medicine to software development and a new chapter in Canada.",
-  "experience.note": "Public version: role, responsibilities, technologies, and approximate experience only. Company names remain protected.",
-  "experience.veterinaryNurse.role": "Veterinary Nurse",
-  "experience.veterinaryNurse.summary": "Emergency / ICU / surgery",
-  "experience.veterinaryNurse.description": "My first career included emergency care, ICU, surgery, and orthopedics. It shaped my attention to detail, communication, and responsibility.",
-  "experience.softwareDeveloper.role": "Software Developer",
-  "experience.softwareDeveloper.summary": "Frontend → backend → testing",
-  "experience.softwareDeveloper.description": "I changed careers into software and expanded from frontend implementation into backend work, testing, and requirements analysis.",
-  "experience.volunteerDeveloper.role": "Volunteer Developer",
-  "experience.volunteerDeveloper.summary": "Canada / nonprofit development",
-  "experience.volunteerDeveloper.description": "I contribute to a Canadian nonprofit project using collaborative React and Next.js workflows.",
-  "experience.softwareEngineer.role": "Software Engineer",
-  "experience.softwareEngineer.summary": "Current direction",
-  "experience.softwareEngineer.description": "My current chapter is continued growth as a developer while building a life and professional network in Calgary.",
-  "projects.title": "Projects",
-  "projects.intro": "More projects are coming soon. This portfolio itself is also one of my projects.",
-  "projects.carouselIntro": "Selected projects presented as stories rather than a dense grid of links.",
-  "projects.thisIsMe.description": "My portfolio platform, including a public profile, protected recruiter access, analytics, testimonials, and a personal visual identity.",
-  "projects.catfolio.description": "A playful companion project inspired by my cats and a space for experimenting with frontend interaction. A public URL can be added when available.",
-  "projects.socialBridge.description": "Volunteer development experience in a collaborative Canadian nonprofit team environment.",
-  "projects.viewSource": "View source",
-  "projects.designedInFigma": "Designed in Figma",
-  "projects.comingSoon": "Coming Soon",
-  "projects.comingSoonDescription": "Additional projects will be added later.",
-  "about.title": "About",
-  "about.carouselIntro": "The interests and places that shape how I think, work, and recharge.",
-  "about.careerTransition": "From veterinary medicine to software development",
-  "about.description": "A short story about the career transition, the values brought from veterinary nursing into software development, how new technologies are learned, and future career goals.",
-  "about.interests": "Basketball • Hiking • Cats",
-  "about.visualPlaceholder": "Personal visual / photo",
-  "about.cats.title": "Cats",
-  "about.cats.description": "Two cats are part of my everyday life and a reminder that quiet observation and small details matter.",
-  "about.basketball.title": "Basketball",
-  "about.basketball.description": "I love the teamwork, quick decisions, and continuous improvement that basketball demands.",
-  "about.hiking.title": "Hiking",
-  "about.hiking.description": "Living near the Rockies turned hiking into one of my favorite ways to reset and explore.",
-  "about.calgary.title": "Calgary",
-  "about.calgary.description": "Canada is part of the chapter I am building now, both personally and professionally.",
-  "testimonials.title": "What People Say",
-  "testimonials.intro": "Approved comments from colleagues, managers, engineers, and volunteer teammates.",
-  "testimonials.carouselIntro": "Short recommendations from people I have worked with.",
-  "testimonials.loading": "Loading testimonials…",
-  "testimonials.empty": "No testimonials are available yet.",
-  "testimonials.failure": "Testimonials could not be loaded. Please try again later.",
-  "testimonials.anonymous": "Anonymous",
-  "contact.title": "Links",
-  "contact.eyebrow": "CONTACT",
-  "contact.portfolioTitle": "Let’s build something thoughtful.",
-  "contact.intro": "Find me on LinkedIn and GitHub.",
-  "contact.linksLabel": "Profile links",
-  "contact.footer": "software developer in Calgary, Canada",
-  "privateProfile.viewResume": "View Resume (PDF)",
-  "privateProfile.downloadResume": "Download Resume (PDF)",
-  "recommend.title": "Testimonial Submission",
-  "recommend.intro": "Share a recommendation about working or volunteering with me.",
-  "recommend.language": "Language",
-  "recommend.authorName": "Your name",
-  "recommend.relationship": "Relationship",
-  "recommend.comment": "Testimonial / recommendation",
-  "recommend.displayPreference": "How may your name appear publicly?",
-  "recommend.displayPreference.full_name": "Full name",
-  "recommend.displayPreference.partial_name": "Partial name",
-  "recommend.displayPreference.anonymous": "Anonymous",
-  "recommend.expectation": "Your submission will be reviewed before publication. Your selected name preference controls how your name may appear.",
-  "recommend.submit": "Submit testimonial",
-  "recommend.submitting": "Submitting…",
-  "recommend.success": "Thank you. Your testimonial was submitted for review.",
-  "recommend.error.validation": "Please complete every field with a valid response.",
-  "recommend.error.server": "We could not submit your testimonial. Please try again."
+  "nav": {
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Links",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "summary": "Frontend-focused Software Developer with full-stack experience, combining software development with a background in healthcare to turn real-world needs into practical solutions.",
+    "viewWork": "View my projects",
+    "title": "Software Developer based in Calgary.",
+    "location": "Calgary, AB, Canada"
+  },
+  "skills": {
+    "gridIntro": "Technologies and tools I use across professional work, personal projects, and volunteer development.",
+    "experience": {
+      "work": "Work",
+      "personal": "Personal",
+      "volunteer": "Volunteer"
+    }
+  },
+  "experience": {
+    "carouselIntro": "Experience across frontend and full-stack development, from implementation and testing to requirements, maintenance, and customer-facing work.",
+    "veterinaryNurse": {
+      "role": "Veterinary Nurse",
+      "description": "Coming Soon."
+    },
+    "softwareDeveloper": {
+      "role": "Software Developer",
+      "description": "Coming Soon."
+    },
+    "volunteerDeveloper": {
+      "role": "Volunteer Developer",
+      "description": "Coming Soon."
+    }
+  },
+  "projects": {
+    "carouselIntro": "Projects I’ve worked on through personal development, from planning and implementation to improving real-world user experiences.",
+    "thisIsMe": {
+      "description": "Coming Soon",
+      "title": "This is me"
+    },
+    "catfolio": {
+      "description": "Coming Soon",
+      "title": "catfolio"
+    },
+    "viewSource": "View source"
+  },
+  "about": {
+    "carouselIntro": "A few things I enjoy outside of work",
+    "cats": {
+      "title": "Cats",
+      "description": "Coming Soon."
+    },
+    "basketball": {
+      "title": "Basketball",
+      "description": "Coming Soon."
+    },
+    "hiking": {
+      "title": "Hiking",
+      "description": "Coming Soon."
+    },
+    "calgary": {
+      "title": "Calgary",
+      "description": "Coming Soon."
+    },
+    "videoGames": {
+      "title": "Video Games"
+    }
+  },
+  "contact": {
+    "eyebrow": "CONTACT",
+    "intro": "Find me on LinkedIn and GitHub.",
+    "footer": "software developer in Calgary, Canada",
+    "siteName": "This is me"
+  },
+  "docs": {
+    "loading": "Loading documentation…"
+  }
 }

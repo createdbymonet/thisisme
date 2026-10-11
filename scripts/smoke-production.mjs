@@ -9,8 +9,8 @@ if (!isProductionUrl && !isAllowedLocalUrl) {
   throw new Error('DEPLOY_URL must be a Cloudflare workers.dev URL');
 }
 
-async function request(path, expectedStatus = 200) {
-  const response = await fetch(new URL(path, baseUrl), { redirect: 'error' });
+async function request(path, expectedStatus = 200, options = {}) {
+  const response = await fetch(new URL(path, baseUrl), { redirect: 'error', ...options });
   if (response.status !== expectedStatus) {
     throw new Error(`${path} returned ${response.status}; expected ${expectedStatus}`);
   }
@@ -18,7 +18,7 @@ async function request(path, expectedStatus = 200) {
   return response;
 }
 
-for (const path of ['/', '/recommend', '/access', '/private', '/manage-portal', '/docs']) {
+for (const path of ['/', '/docs']) {
   const response = await request(path);
   const html = await response.text();
   if (!html.includes('<div id="root"></div>')) throw new Error(`${path} did not return the frontend application`);
@@ -33,15 +33,13 @@ if (typeof openApi !== 'object' || openApi === null || !('openapi' in openApi)) 
   throw new Error('/api/openapi.json did not return an OpenAPI document');
 }
 
-const testimonials = await (await request('/api/testimonials')).json();
-if (typeof testimonials !== 'object' || testimonials === null || !Array.isArray(testimonials.testimonials)) {
-  throw new Error('/api/testimonials returned an unexpected body');
-}
+await request('/api/testimonials', 404);
+await request('/api/testimonials', 404, { method: 'POST' });
 
-await request('/api/private-profile', 401);
-await request('/api/private/resume', 401);
-await request('/api/private/resume?download=true', 401);
-await request('/api/admin/session', 401);
-await request('/api/admin/access-codes', 401);
+await request('/api/private-profile', 404);
+await request('/api/private/resume', 404);
+await request('/api/private/resume?download=true', 404);
+await request('/api/admin/session', 404);
+await request('/api/access/validate', 404, { method: 'POST' });
 
 console.log(`Production smoke checks passed for ${baseUrl}`);

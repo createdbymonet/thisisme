@@ -44,25 +44,6 @@ jobs:
       - name: Validate development release
         run: pnpm check
 
-      - name: Verify required Worker secrets
-        run: |
-          configured_secrets="$(pnpm wrangler secret list --env development --format json)"
-          for required_secret in PRIVATE_DATA_ENCRYPTION_KEY ADMIN_AUTH_SECRET; do
-            if ! jq -e --arg name "$required_secret" 'map(.name) | index($name) != null' <<<"$configured_secrets" >/dev/null; then
-              echo "Required development Worker secret is not configured: $required_secret" >&2
-              exit 1
-            fi
-          done
-
-      - name: Apply development D1 migrations
-        run: pnpm wrangler d1 migrations apply DB --env development --remote
-
-      - name: Verify no development migrations remain
-        run: |
-          migration_status="$(pnpm wrangler d1 migrations list DB --env development --remote)"
-          printf '%s\n' "$migration_status"
-          grep -q "No migrations to apply" <<<"$migration_status"
-
       - name: Deploy development Worker and frontend assets
         id: deploy
         run: |
