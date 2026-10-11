@@ -25,8 +25,24 @@ for (const path of ['/', '/docs']) {
   if (!html.includes('name="robots" content="noindex, nofollow"')) throw new Error(`${path} lost noindex, nofollow metadata`);
 }
 
-const health = await (await request('/api/health')).json();
-if (health.status !== 'ok') throw new Error('/api/health returned an unexpected body');
+// A newly deployed Worker can briefly return errors while its version propagates.
+async function waitForHealthyWorker() {
+  for (let attempt = 1; attempt <= 6; attempt += 1) {
+    try {
+      const health = await (await request('/api/health', 200, {
+        signal: AbortSignal.timeout(10000),
+      })).json();
+      if (health.status !== 'ok') throw new Error('/api/health returned an unexpected body');
+      return;
+    } catch (error) {
+      if (attempt === 6) throw error;
+      console.log(`Worker health check failed (attempt ${attempt}/6); retrying in 3 seconds.`);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    }
+  }
+}
+
+await waitForHealthyWorker();
 
 const openApi = await (await request('/api/openapi.json')).json();
 if (typeof openApi !== 'object' || openApi === null || !('openapi' in openApi)) {
