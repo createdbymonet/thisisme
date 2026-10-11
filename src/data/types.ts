@@ -1,14 +1,14 @@
-import type { TranslationKey } from '../i18n'
+import type { ContentKey } from '../content'
 
 export type Skill = {
   id: string
   name: string
   category: string
-  experienceType: 'professional' | 'learning'
+  experienceTypes: Array<'work' | 'personal' | 'volunteer'>
 }
 
 export type Experience = {
   id: string
-  roleKey: TranslationKey
-  summaryKey: TranslationKey
+  roleKey: ContentKey
+  descriptionKey: ContentKey
 }

@@ -1,0 +1,37 @@
+.portfolio-home #about {
+  --portfolio-card-width: calc((100% - var(--portfolio-carousel-gap)) / 2);
+}
+
+@media (min-width: 600px) {
+  .portfolio-home #about {
+    --portfolio-card-width: calc((100% - 2 * var(--portfolio-carousel-gap)) / 3);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-home #about {
+    --portfolio-card-width: calc((100% - 4 * var(--portfolio-carousel-gap)) / 5);
+  }
+}
+
+.portfolio-home #about .portfolio-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-home .portfolio-hero__summary {
+  position: relative;
+  isolation: isolate;
+  padding: 16px 20px;
+  text-shadow: none;
+}
+
+.portfolio-home .portfolio-hero__summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.28);
+  filter: blur(24px);
+}
