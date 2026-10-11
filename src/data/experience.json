@@ -1,6 +1,5 @@
 [
-  { "id": "veterinary-nurse", "roleKey": "experience.veterinaryNurse.role", "summaryKey": "experience.veterinaryNurse.summary" },
-  { "id": "software-developer", "roleKey": "experience.softwareDeveloper.role", "summaryKey": "experience.softwareDeveloper.summary" },
-  { "id": "volunteer-developer", "roleKey": "experience.volunteerDeveloper.role", "summaryKey": "experience.volunteerDeveloper.summary" },
-  { "id": "software-engineer", "roleKey": "experience.softwareEngineer.role", "summaryKey": "experience.softwareEngineer.summary" }
+  {"id": "software-developer", "roleKey": "experience.softwareDeveloper.role", "descriptionKey": "experience.softwareDeveloper.description"},
+  {"id": "volunteer-developer", "roleKey": "experience.volunteerDeveloper.role", "descriptionKey": "experience.volunteerDeveloper.description"},
+  {"id": "veterinary-nurse", "roleKey": "experience.veterinaryNurse.role", "descriptionKey": "experience.veterinaryNurse.description"}
 ]

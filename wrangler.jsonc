@@ -1,56 +1,20 @@
 {
-	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "thisisme",
-	"main": "worker/index.ts",
-	"compatibility_date": "2026-08-15",
-	"secrets": {
-		"required": [
-			"PRIVATE_DATA_ENCRYPTION_KEY",
-			"ADMIN_AUTH_SECRET"
-		]
-	},
-	"assets": {
-		"not_found_handling": "single-page-application",
-		"run_worker_first": ["/api/*"]
-	},
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "thisisme",
-			"database_id": "c293d49f-d394-40d4-9383-4c31a6d3417f"
-		}
-	],
-	"r2_buckets": [
-		{
-			"binding": "PRIVATE_FILES",
-			"bucket_name": "thisisme-production-private"
-		}
-	],
-	"env": {
-		"development": {
-			"workers_dev": true,
-			"secrets": {
-				"required": [
-					"PRIVATE_DATA_ENCRYPTION_KEY",
-					"ADMIN_AUTH_SECRET"
-				]
-			},
-			"d1_databases": [
-				{
-					"binding": "DB",
-					"database_name": "thisisme-development",
-					"database_id": "4539f30c-4e43-4115-a7c3-83e2ff1419f2"
-				}
-			],
-			"r2_buckets": [
-				{
-					"binding": "PRIVATE_FILES",
-					"bucket_name": "thisisme-development-private"
-				}
-			]
-		}
-	},
-	"observability": {
-		"enabled": true
-	}
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "thisisme",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-15",
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "env": {
+    "development": {
+      "workers_dev": true
+    }
+  },
+  "observability": {
+    "enabled": true
+  }
 }
