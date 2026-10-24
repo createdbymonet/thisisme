@@ -9,11 +9,6 @@
       "/api/*"
     ]
   },
-  "env": {
-    "development": {
-      "workers_dev": true
-    }
-  },
   "observability": {
     "enabled": true
   }
