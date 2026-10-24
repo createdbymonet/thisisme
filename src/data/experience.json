@@ -1,5 +1,5 @@
 [
-  {"id": "software-developer", "roleKey": "experience.softwareDeveloper.role", "descriptionKey": "experience.softwareDeveloper.description"},
+  {"id": "software-developer", "roleKey": "experience.softwareDeveloper.role", "descriptionKey": "experience.softwareDeveloper.description", "isCurrent": true},
   {"id": "volunteer-developer", "roleKey": "experience.volunteerDeveloper.role", "descriptionKey": "experience.volunteerDeveloper.description"},
   {"id": "veterinary-nurse", "roleKey": "experience.veterinaryNurse.role", "descriptionKey": "experience.veterinaryNurse.description"}
 ]

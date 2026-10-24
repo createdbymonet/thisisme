@@ -10,4 +10,5 @@ export type Experience = {
   id: string
   roleKey: ContentKey
   descriptionKey: ContentKey
+  isCurrent?: boolean
 }

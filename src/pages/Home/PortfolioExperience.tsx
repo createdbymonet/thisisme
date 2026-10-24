@@ -11,7 +11,7 @@ type PortfolioExperienceProps = {
 const experience = experienceJson as Experience[]
 
 function ExperienceItem({ item, t }: PortfolioExperienceProps & { item: Experience }) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(item.id === 'software-developer')
   const id = useId()
   const triggerId = `${id}-trigger`
   const panelId = `${id}-panel`
@@ -26,7 +26,10 @@ function ExperienceItem({ item, t }: PortfolioExperienceProps & { item: Experien
         aria-controls={panelId}
         onClick={() => setIsExpanded((expanded) => !expanded)}
       >
-        <span>{t(item.roleKey)}</span>
+        <span className="portfolio-experience__title">
+          <span className="portfolio-experience__role">{t(item.roleKey)}</span>
+          {item.isCurrent && <span className="portfolio-experience__current">Currently</span>}
+        </span>
         <span className="portfolio-experience__indicator" aria-hidden="true">{isExpanded ? '−' : '+'}</span>
       </button>
     </h3>
