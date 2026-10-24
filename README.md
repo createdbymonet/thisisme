@@ -12,7 +12,7 @@ The private profile, access codes, resume delivery, administrator portal, and co
 * OpenAPI specification
 * Swagger UI
 * GitHub Actions CI
-* Separate development and production deployments
+* Local Vite development and production deployment from `release`
 
 <details>
 <summary>日本語</summary>
@@ -25,7 +25,33 @@ The private profile, access codes, resume delivery, administrator portal, and co
 * OpenAPI Specification
 * Swagger UI
 * GitHub Actions CI
-* Development / Production分離Deploy
+* Viteによるローカル開発と`release`からのProduction Deploy
+
+</details>
+
+---
+
+## Local development and deployment
+
+Run `pnpm dev` for local Vite development. No Cloudflare deployment is required.
+
+| Branch | GitHub Actions behavior |
+| --- | --- |
+| `main` | Run CI checks; no Cloudflare deployment |
+| `release` | Run `pnpm check`, deploy the production Worker `thisisme`, then run production smoke checks |
+
+Production uses the top-level `wrangler.jsonc` configuration. There are no named Wrangler environments or development deployment workflows. The Cloudflare Vite plugin uses this configuration for local development and production builds.
+
+The GitHub Actions `development` environment is no longer referenced by any workflow and can be deleted manually in repository settings. Removing repository configuration does not delete an existing remote Worker; remote cleanup is a separate action. Historical R2 buckets are outside this configuration change.
+
+<details>
+<summary>日本語</summary>
+
+`pnpm dev`でViteによるローカル開発を開始します。CloudflareへのDeployは不要です。
+
+`main`へのPushではCIチェックのみを実行し、CloudflareにはDeployしません。`release`へのPushでは`pnpm check`、Production Worker `thisisme`へのDeploy、本番スモークチェックを順に実行します。
+
+Wranglerはトップレベルの設定のみを使用します。開発用のWrangler環境やDeploy Workflowはありません。GitHub Actionsの`development`環境は未参照となるため、Repository Settingsから手動で削除できます。既存のCloudflare Workerや過去のR2 Bucketの削除は別途判断します。
 
 </details>
 
@@ -206,7 +232,7 @@ Version `1.0.0.0` と `2.0.0.0` は、AI-only implementationという条件の�
 
 The AI-only implementation experiment has continued through Version `2.0.0.0`.
 
-The project now includes separate development and production environments, protected resume delivery through private Cloudflare R2 storage, environment-specific D1 databases, and controlled production releases through the `release` branch.
+The current implementation provides the public portfolio without D1 or R2 bindings. Local development uses Vite; `main` runs CI without deploying, and `release` deploys the production Cloudflare Worker `thisisme`. The separate development deployment and protected storage features described in the version history are no longer part of the current configuration.
 
 Future development may transition toward direct source-code implementation by the project owner while continuing to use ChatGPT and Codex as development tools.
 
@@ -219,7 +245,7 @@ Future development may transition toward direct source-code implementation by th
 
 AI-only implementationの実験はVersion `2.0.0.0` まで継続しました。
 
-現在は、Development / Production環境の分離、Private Cloudflare R2を利用した認証付きレジュメ配信、環境ごとに分離したD1 Database、`release` ブランチを利用したProduction Release Flowまで実装されています。
+現在の実装はD1やR2のBindingを使用せず、公開ポートフォリオを提供します。ローカル開発はViteを使用し、`main`ではCIのみ、`release`ではProduction Cloudflare Worker `thisisme`へのDeployを実行します。Version履歴に記載した開発用Deployや認証付きストレージ機能は現在の構成には含まれません。
 
 今後はChatGPTやCodexを開発Toolとして引き続き利用しながら、Project Owner自身によるSource Codeの直接実装へ移行する可能性があります。
 
