@@ -4,7 +4,6 @@ export type Skill = {
   id: string
   name: string
   category: string
-  experienceTypes: Array<'work' | 'personal' | 'volunteer'>
 }
 
 export type Experience = {

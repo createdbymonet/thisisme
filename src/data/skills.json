@@ -2,82 +2,96 @@
   {
     "id": "typescript",
     "category": "language",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "TypeScript"
+  },
+  {
+    "id": "javascript",
+    "category": "language",
+    "name": "JavaScript"
   },
   {
     "id": "vue-js",
     "category": "frontend",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "Vue.js"
   },
   {
     "id": "react",
     "category": "frontend",
-    "experienceTypes": [
-      "personal"
-    ],
     "name": "React"
   },
   {
     "id": "next-js",
     "category": "frontend",
-    "experienceTypes": [
-      "personal",
-      "volunteer"
-    ],
     "name": "Next.js"
+  },
+  {
+    "id": "angular",
+    "category": "frontend",
+    "name": "Angular"
+  },
+  {
+    "id": "svelte",
+    "category": "frontend",
+    "name": "Svelte"
+  },
+  {
+    "id": "sveltekit",
+    "category": "frontend",
+    "name": "SvelteKit"
   },
   {
     "id": "c-sharp",
     "category": "language",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "C#"
+  },
+  {
+    "id": "html",
+    "category": "language",
+    "name": "HTML"
+  },
+  {
+    "id": "css",
+    "category": "language",
+    "name": "CSS"
+  },
+  {
+    "id": "scss",
+    "category": "language",
+    "name": "SCSS"
   },
   {
     "id": "rest-api",
     "category": "backend",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "REST API / OpenAPI"
   },
   {
     "id": "vitest",
     "category": "engineering",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "Vitest"
   },
   {
-    "id": "e2e",
+    "id": "playwright",
     "category": "engineering",
-    "experienceTypes": [
-      "work"
-    ],
-    "name": "e2e"
+    "name": "Playwright"
   },
   {
     "id": "git-github",
     "category": "tooling",
-    "experienceTypes": [
-      "work"
-    ],
     "name": "Git / GitHub"
   },
   {
     "id": "cloudflare",
     "category": "platform",
-    "experienceTypes": [
-      "personal"
-    ],
-    "name": "Cloudflare"
+    "name": "Cloudflare Workers"
+  },
+  {
+    "id": "wrangler",
+    "category": "tooling",
+    "name": "Wrangler"
+  },
+  {
+    "id": "github-actions",
+    "category": "tooling",
+    "name": "GitHub Actions"
   }
 ]

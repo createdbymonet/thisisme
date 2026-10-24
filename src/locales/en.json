@@ -4,26 +4,15 @@
     "experience": "Experience",
     "projects": "Projects",
     "about": "About",
-    "contact": "Links",
-    "menu": "Menu",
-    "close": "Close"
+    "contact": "Links"
   },
   "hero": {
     "summary": "Frontend-focused Software Developer with full-stack experience, combining software development with a background in healthcare to turn real-world needs into practical solutions.",
     "viewWork": "View my projects",
-    "title": "Software Developer based in Calgary.",
+    "title": "Healthcare Software Developer",
     "location": "Calgary, AB, Canada"
   },
-  "skills": {
-    "gridIntro": "Technologies and tools I use across professional work, personal projects, and volunteer development.",
-    "experience": {
-      "work": "Work",
-      "personal": "Personal",
-      "volunteer": "Volunteer"
-    }
-  },
   "experience": {
-    "carouselIntro": "Experience across frontend and full-stack development, from implementation and testing to requirements, maintenance, and customer-facing work.",
     "veterinaryNurse": {
       "role": "Veterinary Nurse",
       "description": "Coming Soon."
@@ -38,19 +27,32 @@
     }
   },
   "projects": {
-    "carouselIntro": "Projects I’ve worked on through personal development, from planning and implementation to improving real-world user experiences.",
     "thisIsMe": {
-      "description": "Coming Soon",
+      "description": "A responsive developer portfolio presenting my experience, technical skills, and personal projects. Explore my work, open live demos and source code, and find my professional profiles.",
       "title": "This is me"
     },
     "catfolio": {
-      "description": "Coming Soon",
+      "description": "A mobile-first cat care prototype for organizing daily tasks, health events, medical records, and memories. Explore multiple cat profiles, manage a timeline, and favorite memories using local demo data.",
       "title": "catfolio"
     },
+    "familyHub": {
+      "description": "A household app prototype with a shopping checklist and a Thanks Board. Add and manage items, post everyday accomplishments, and react to contributions in an interactive demo.",
+      "title": "Family Hub"
+    },
+    "improveTracker": {
+      "description": "A personal English-learning notebook for collecting vocabulary, meanings, example sentences, translations, and notes. Add, edit, and review word cards in a vertical layout, with changes saved in your browser.",
+      "title": "Improve Tracker"
+    },
+    "myTools": {
+      "description": "A collection of developer utilities for everyday workflows. Its Refactor Marker extension helps organize related code across files, navigate colored groups, and export TypeScript function drafts for review.",
+      "title": "My Tools"
+    },
+    "liveDemo": "Live Demo",
+    "github": "GitHub",
+    "imagePlaceholder": "place holder",
     "viewSource": "View source"
   },
   "about": {
-    "carouselIntro": "A few things I enjoy outside of work",
     "cats": {
       "title": "Cats",
       "description": "Coming Soon."
@@ -68,12 +70,12 @@
       "description": "Coming Soon."
     },
     "videoGames": {
-      "title": "Video Games"
+      "title": "Video Games",
+      "description": "Coming Soon."
     }
   },
   "contact": {
     "eyebrow": "CONTACT",
-    "intro": "Find me on LinkedIn and GitHub.",
     "footer": "software developer in Calgary, Canada",
     "siteName": "This is me"
   },

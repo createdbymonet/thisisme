@@ -1,6 +1,6 @@
 .portfolio-skills {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -8,8 +8,14 @@
 }
 
 .portfolio-skill {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
   min-width: 0;
-  padding: 12px 8px;
+  max-width: 100%;
+  padding: 12px 16px;
   background: var(--portfolio-surface);
   border: 1px solid var(--portfolio-border);
   border-radius: 16px;
@@ -17,24 +23,5 @@
   -webkit-backdrop-filter: var(--portfolio-backdrop);
   backdrop-filter: var(--portfolio-backdrop);
 
-  h3 { margin: 0; color: var(--portfolio-text); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; }
-}
-
-.portfolio-skill__labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-
-  li { min-width: 0; padding: 3px 6px; color: var(--portfolio-text-muted); background: var(--portfolio-surface-soft); border: 1px solid var(--portfolio-border); border-radius: 999px; font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
-}
-
-@media (min-width: 600px) {
-  .portfolio-skills { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1024px) {
-  .portfolio-skills { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  h3 { margin: 0; color: var(--portfolio-text); font-size: 14px; line-height: 1.4; white-space: nowrap; }
 }
