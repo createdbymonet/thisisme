@@ -228,3 +228,7 @@ AI-only implementationの実験はVersion `2.0.0.0` まで継続しました。
 ### Retired-feature database cleanup
 
 Both `thisisme` and `thisisme-development` D1 databases were deleted by the owner. The application no longer uses a database. D1 bindings, migration checks, and deployment migration steps have been removed. SQL migrations are retained only as historical records and are not applied by CI or deployment workflows.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
