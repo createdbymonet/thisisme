@@ -12,7 +12,7 @@
   min-width: 0;
   background: var(--portfolio-surface);
   border: 1px solid var(--portfolio-border);
-  border-radius: 18px;
+  border-radius: var(--portfolio-radius);
   box-shadow: var(--portfolio-shadow);
   -webkit-backdrop-filter: var(--portfolio-backdrop);
   backdrop-filter: var(--portfolio-backdrop);
@@ -37,16 +37,16 @@
   color: var(--portfolio-text);
   background: transparent;
   border: 0;
-  border-radius: 18px;
+  border-radius: var(--portfolio-radius);
   font: inherit;
   font-weight: 700;
   text-align: left;
   cursor: pointer;
 }
 
-.portfolio-experience__title { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.portfolio-experience__title { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; min-width: 0; }
 .portfolio-experience__role { min-width: 0; overflow-wrap: anywhere; }
-.portfolio-experience__current { flex-shrink: 0; padding: 2px 8px; color: var(--portfolio-text-muted); border: 1px solid var(--portfolio-border-strong); border-radius: 6px; font-size: 11px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
+.portfolio-experience__current { flex-shrink: 0; padding: 2px 8px; color: var(--portfolio-text-muted); border: 1px solid var(--portfolio-border-strong); border-radius: 6px; font-size: 0.8125rem; font-weight: 600; line-height: 1.3; white-space: nowrap; }
 .portfolio-experience__indicator { flex-shrink: 0; color: var(--portfolio-primary); font-size: 24px; line-height: 1; }
 
 .portfolio-experience__panel {
@@ -66,8 +66,8 @@
 .portfolio-experience__details {
   padding: 0 22px 20px;
   color: var(--portfolio-text-muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--portfolio-body-size);
+  line-height: 1.75;
   overflow-wrap: anywhere;
 
   p { margin: 0; white-space: pre-line; }
@@ -76,3 +76,10 @@
 @media (prefers-reduced-motion: reduce) {
   .portfolio-experience__item, .portfolio-experience__panel, .portfolio-experience__panel[data-expanded="true"] { transition: none; }
 }
+
+.portfolio-experience__meta { display: flex; flex-wrap: wrap; gap: 16px 40px; margin: 0 0 18px; }
+.portfolio-experience__meta div { min-width: 0; }
+.portfolio-experience__meta dt { font-size: 0.8125rem; font-weight: 700; }
+.portfolio-experience__meta dd { margin: 2px 0 0; color: var(--portfolio-text); }
+.portfolio-experience__highlights { max-width: 68ch; padding-inline-start: 1.25em; margin-block: 16px 0; }
+.portfolio-experience__highlights li + li { margin-top: 8px; }

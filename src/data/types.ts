@@ -9,6 +9,10 @@ export type Skill = {
 export type Experience = {
   id: string
   roleKey: ContentKey
-  descriptionKey: ContentKey
+  descriptionKey?: ContentKey
+  organization?: string
+  period?: string
+  highlights?: string[]
+  technologies?: string[]
   isCurrent?: boolean
 }

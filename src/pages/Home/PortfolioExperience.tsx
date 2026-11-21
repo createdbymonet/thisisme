@@ -44,7 +44,17 @@ function ExperienceItem({ item, t }: PortfolioExperienceProps & { item: Experien
     >
       <div className="portfolio-experience__panel-inner">
         <div className="portfolio-experience__details">
-          <p>{t(item.descriptionKey)}</p>
+          {(item.organization || item.period) && <dl className="portfolio-experience__meta">
+            {item.organization && <div><dt>Organization</dt><dd>{item.organization}</dd></div>}
+            {item.period && <div><dt>Period</dt><dd>{item.period}</dd></div>}
+          </dl>}
+          {item.descriptionKey && <p>{t(item.descriptionKey)}</p>}
+          {!!item.highlights?.length && <ul className="portfolio-experience__highlights">
+            {item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+          </ul>}
+          {!!item.technologies?.length && <ul className="portfolio-technology-list" aria-label="Technologies">
+            {item.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>}
         </div>
       </div>
     </div>
