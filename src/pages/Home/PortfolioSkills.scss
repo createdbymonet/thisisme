@@ -1,27 +1,9 @@
-.portfolio-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+.portfolio-skill-groups { display: grid; gap: 24px; }
+.portfolio-skill-group { min-width: 0; }
+.portfolio-skill-group h3 { margin: 0 0 12px; font-size: 1rem; line-height: 1.5; }
+.portfolio-skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.portfolio-skill { display: flex; align-items: center; min-height: 40px; max-width: 100%; padding: 8px 12px; background: transparent; border: 1px solid var(--portfolio-border); border-radius: 6px; font-size: 0.9375rem; line-height: 1.5; overflow-wrap: anywhere; }
+.portfolio-skill--featured { border-color: var(--portfolio-primary); font-weight: 700; }
+@media (min-width: 600px) { .portfolio-skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-.portfolio-skill {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  height: 48px;
-  min-width: 0;
-  max-width: 100%;
-  padding: 12px 16px;
-  background: var(--portfolio-surface);
-  border: 1px solid var(--portfolio-border);
-  border-radius: 16px;
-  box-shadow: var(--portfolio-shadow);
-  -webkit-backdrop-filter: var(--portfolio-backdrop);
-  backdrop-filter: var(--portfolio-backdrop);
-
-  h3 { margin: 0; color: var(--portfolio-text); font-size: 14px; line-height: 1.4; white-space: nowrap; }
-}
+.portfolio-skill-groups { padding: 20px; background: var(--portfolio-surface); -webkit-backdrop-filter: var(--portfolio-backdrop); backdrop-filter: var(--portfolio-backdrop); border-block: 1px solid var(--portfolio-border); border-radius: var(--portfolio-radius); overflow: hidden; }

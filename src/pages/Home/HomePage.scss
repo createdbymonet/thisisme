@@ -1,3 +1,18 @@
+.portfolio-home__content {
+  container-type: inline-size;
+}
+
+.portfolio-home .portfolio-hero h1 {
+  max-width: min(100%, 1120px);
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-hero__title-part {
+    display: block;
+  }
+}
+
 .portfolio-home #projects .portfolio-card {
   min-width: 0;
   overflow-wrap: anywhere;
@@ -6,28 +21,86 @@
 .portfolio-home #projects .portfolio-card__actions {
   display: flex;
   flex-wrap: wrap;
-  column-gap: var(--portfolio-carousel-gap);
+  gap: 10px;
   max-width: 100%;
   margin-top: auto;
+  padding-top: 24px;
+  width: 100%;
 }
 
-.portfolio-home :is(#projects, #about) {
+.portfolio-home #projects {
   // Reserve one gap and a third of the next card as a scrolling cue.
   --portfolio-card-width: calc((100% - var(--portfolio-carousel-gap)) / (1 + 1 / 3));
 }
 
-.portfolio-home :is(#projects, #about) .portfolio-card:only-child {
+.portfolio-home #projects .portfolio-carousel {
+  // Use the layout viewport width without including the vertical scrollbar.
+  --portfolio-carousel-edge-space: calc((100cqw - 100%) / 2);
+  width: 100cqw;
+  margin-inline-start: calc(-1 * var(--portfolio-carousel-edge-space));
+  // The scrollable start padding preserves the initial heading alignment.
+  // Total padding keeps percentage card widths based on the same content width.
+  padding-inline-start: var(--portfolio-carousel-edge-space);
+  padding-inline-end: calc(4px + var(--portfolio-carousel-edge-space));
+  // Exact snap insets are synchronized from computed padding by the carousel.
+  scroll-padding-inline: 0;
+  scroll-snap-type: x mandatory;
+}
+
+.portfolio-home #projects .portfolio-carousel-layout { min-width: 0; }
+
+.portfolio-home #projects .portfolio-carousel--indicated {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.portfolio-home #projects .portfolio-carousel-indicator {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  margin-inline-start: 0;
+  overflow: visible;
+  border-radius: 999px;
+  background: var(--portfolio-border);
+  user-select: none;
+  touch-action: none;
+}
+
+.portfolio-home #projects .portfolio-carousel-indicator__thumb {
+  position: absolute;
+  top: -9px;
+  bottom: -9px;
+  border-radius: inherit;
+  cursor: grab;
+
+  &::before {
+    position: absolute;
+    inset: 9px 0;
+    content: '';
+    border-radius: inherit;
+    background: color-mix(in srgb, var(--portfolio-accent) 70%, transparent);
+  }
+}
+
+.portfolio-home #projects .portfolio-carousel-indicator[data-dragging="true"] .portfolio-carousel-indicator__thumb { cursor: grabbing; }
+.portfolio-home #projects .portfolio-carousel[data-scrollbar-dragging="true"] { scroll-snap-type: none; }
+.portfolio-home #projects .portfolio-carousel-indicator:focus-visible:not([data-pointer-focus]) { outline: 3px solid #245e68; outline-offset: 3px; }
+.portfolio-home #projects .portfolio-carousel-indicator:focus:not(:focus-visible),
+.portfolio-home #projects .portfolio-carousel-indicator[data-pointer-focus="true"] { outline: none; }
+
+.portfolio-home #projects .portfolio-card:only-child {
   flex-basis: 100%;
 }
 
 @media (min-width: 600px) {
-  .portfolio-home :is(#projects, #about) {
+  .portfolio-home #projects {
     --portfolio-card-width: calc((100% - 2 * var(--portfolio-carousel-gap)) / (2 + 1 / 3));
   }
 }
 
 @media (min-width: 1024px) {
-  .portfolio-home :is(#projects, #about) {
+  .portfolio-home #projects {
     --portfolio-card-width: calc((100% - 3 * var(--portfolio-carousel-gap)) / (3 + 1 / 3));
   }
 }
@@ -36,15 +109,6 @@
   .portfolio-home #projects {
     --portfolio-card-width: calc((100% - 2 * var(--portfolio-carousel-gap)) / 3);
   }
-
-  .portfolio-home #about {
-    --portfolio-card-width: calc((100% - 4 * var(--portfolio-carousel-gap)) / 5);
-  }
-}
-
-.portfolio-home #about .portfolio-card {
-  min-width: 0;
-  overflow-wrap: anywhere;
 }
 
 .portfolio-home .portfolio-hero__summary {
@@ -62,4 +126,18 @@
     background: rgba(255, 255, 255, 0.28);
     filter: blur(24px);
   }
+}
+
+// Equal rows keep titles, descriptions, technology and links aligned across cards.
+.portfolio-home #projects .portfolio-carousel { align-items: stretch; }
+.portfolio-home #projects .portfolio-card { display: grid; grid-template-rows: 16px auto minmax(2.4em, auto) 1fr auto auto; align-content: start; align-items: start; }
+.portfolio-home #projects .portfolio-card__topline { grid-row: 1; }
+.portfolio-home #projects .portfolio-image { grid-row: 2; }
+.portfolio-home #projects .portfolio-card h3 { grid-row: 3; }
+.portfolio-home #projects .portfolio-card > p { grid-row: 4; }
+.portfolio-home #projects .portfolio-technology-list { grid-row: 5; }
+.portfolio-home #projects .portfolio-card__actions { grid-row: 6; }
+@supports (grid-template-rows: subgrid) {
+  .portfolio-home #projects .portfolio-carousel { display: grid; row-gap: 0; grid-auto-flow: column; grid-auto-columns: var(--portfolio-card-width); grid-template-rows: auto auto auto auto auto auto; }
+  .portfolio-home #projects .portfolio-card { grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
 }

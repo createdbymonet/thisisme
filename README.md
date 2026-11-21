@@ -7,7 +7,7 @@ The private profile, access codes, resume delivery, administrator portal, and co
 ## Features
 
 * Public portfolio
-* English / Japanese localization
+* English content (no language switcher)
 * Responsive desktop, tablet, and mobile layouts
 * OpenAPI specification
 * Swagger UI
@@ -20,7 +20,7 @@ The private profile, access codes, resume delivery, administrator portal, and co
 ## 主な機能
 
 * Public Portfolio
-* 英語 / 日本語切り替え
+* 英語コンテンツ（言語切替なし）
 * Desktop / Tablet / Mobile対応
 * OpenAPI Specification
 * Swagger UI
@@ -258,3 +258,9 @@ Both `thisisme` and `thisisme-development` D1 databases were deleted by the owne
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
+
+## Portfolio content maintenance
+
+Existing copy is stored in `src/locales/en.json`. Experience supports optional `organization`, `period`, `highlights`, and `technologies`; omitted fields render no labels. Keep the current description until an approved structured replacement is ready. Project technology lists are optional and must be verified from source; only This is me is currently populated. Skill emphasis uses technologies named in the professional experience copy.
+
+The Projects right-edge layout uses the full-width `.portfolio-home__content` size container. Keep it outside the capped inner layout and keep carousel width and end padding in sync so percentage card widths stay unchanged.

@@ -1,5 +1,30 @@
 [
-  {"id": "software-developer", "roleKey": "experience.softwareDeveloper.role", "descriptionKey": "experience.softwareDeveloper.description", "isCurrent": true},
-  {"id": "volunteer-developer", "roleKey": "experience.volunteerDeveloper.role", "descriptionKey": "experience.volunteerDeveloper.description"},
-  {"id": "veterinary-nurse", "roleKey": "experience.veterinaryNurse.role", "descriptionKey": "experience.veterinaryNurse.description"}
+  {
+    "id": "software-developer",
+    "roleKey": "experience.softwareDeveloper.role",
+    "descriptionKey": "experience.softwareDeveloper.description",
+    "isCurrent": true,
+    "technologies": [
+      "TypeScript",
+      "Vue.js",
+      "C#",
+      "SQL"
+    ]
+  },
+  {
+    "id": "volunteer-developer",
+    "roleKey": "experience.volunteerDeveloper.role",
+    "descriptionKey": "experience.volunteerDeveloper.description",
+    "organization": "Social Bridge Canada",
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ]
+  },
+  {
+    "id": "veterinary-nurse",
+    "roleKey": "experience.veterinaryNurse.role",
+    "descriptionKey": "experience.veterinaryNurse.description"
+  }
 ]
